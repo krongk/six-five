@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="author" content="master@inruby.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= content_for?(:title) ? yield(:title) : "RainCMS" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "RainCMS" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <a href="#content" class="sr-only">跳转到内容部分</a>
+    
+    <!-- Fixed navbar -->
+    <header>
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </div>
+    </header>
+
+    <main role="main" style="margin-top: 60px;">
+      <div class="container">
+         <div class="row">
+           <div class="col-md-12">
+             <%= render 'layouts/messages' %>
+             <%= yield %>
+           </div>
+         </div>
+      </div>
+    </main>
+  </body>
+</html>

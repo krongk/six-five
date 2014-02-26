@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <%= @admin_keystore.key %>
+  <small><%= @admin_keystore.description %></small>
+</h2>
+
+<pre>
+  <%= @admin_keystore.value %>
+</pre>
+
+<%= link_to '编辑', edit_admin_keystore_path(@admin_keystore) %> |
+<%= link_to '返回', admin_keystores_path %>

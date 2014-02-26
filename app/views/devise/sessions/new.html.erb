@@ -1,0 +1,14 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">管理员登录</h3>
+  </div>
+  <div class="panel-body">
+      <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+        <%= f.input :email, :autofocus => true %>
+        <%= f.input :password %>
+        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+        <%= f.button :submit, "登 录", :class => 'btn-primary' %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+  </div>
+</div>

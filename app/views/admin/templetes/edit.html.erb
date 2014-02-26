@@ -1,0 +1,17 @@
+<%# encoding: utf-8 %>
+<h1>编辑模版</h1>
+<p><%= @file %></p>
+
+<%= form_tag('/admin/templetes/update', method: "post") do %>
+  <input type="hidden" name="f" value="<%= params[:f]%>"/>
+  <p>
+    <textarea name="content" style="width: 100%; height: 600px; max-height: 800px;">
+      <%= @file_content %>
+    </textarea>
+  </p>
+  <p>
+    <input type="submit" name="submit" value="保存" class="btn btn-primary" />
+    <a href="/admin/templetes/index" class="btn btn-default">返回</a>
+  </p>
+<% end %>
+

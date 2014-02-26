@@ -1,0 +1,15 @@
+<% title \
+  [ params[:search], 
+    Admin::Keystore.value_for('site_name')].join(' | ').sub(/^\s*\|/, '').strip %>
+<% meta_keywords \
+  [ params[:search], 
+    Admin::Keystore.value_for('site_name')].join(' | ').sub(/^\s*\|/, '').strip %>
+<% meta_description \
+  [ params[:search], 
+    Admin::Keystore.value_for('site_name')].join(' | ').sub(/^\s*\|/, '').strip %>
+
+<% if File.exist?( @base_dir + 'temp_search.html' )%>
+  <%= render file: @base_dir + 'temp_search.html' %>
+<% else %>
+  <h2 class="error">没有找到搜索模版文件！</h2>
+<% end %>

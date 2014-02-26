@@ -1,0 +1,20 @@
+<div id="tag" class="list">
+  <h2><i class="fa fa-dot-circle-o fa-lg"></i> 如何添加标签(TAG)</h2>
+
+  <h3>显示某个页面的标签</h3>
+  <pre>
+     &lt;% @page.tag_list.each do |tag| %&gt; 
+       &lt;%= link_to tag, tag_path(tag) %&gt;
+     &lt;% end %&gt;
+  </pre>
+
+  <h3>显示标签云</h3>
+  <pre>
+    &lt;% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %&gt;
+       &lt;li&gt;&lt;%= link_to tag_path(tag.name)  do%&gt;
+           &lt;i class="icon-tags"&gt;&lt;/i&gt;&lt;%= tag.name %&gt;
+       &lt;% end %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+  </pre>
+
+</div>

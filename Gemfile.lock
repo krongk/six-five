@@ -1,0 +1,258 @@
+GIT
+  remote: git@github.com:galetahub/ckeditor.git
+  revision: 077827e013901f315a6a1ca9cc7ac2af05acc099
+  specs:
+    ckeditor (4.0.7)
+      mime-types
+      orm_adapter
+
+GEM
+  remote: http://ruby.taobao.org/
+  specs:
+    actionmailer (4.0.2)
+      actionpack (= 4.0.2)
+      mail (~> 2.5.4)
+    actionpack (4.0.2)
+      activesupport (= 4.0.2)
+      builder (~> 3.1.0)
+      erubis (~> 2.7.0)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
+    activemodel (4.0.2)
+      activesupport (= 4.0.2)
+      builder (~> 3.1.0)
+    activerecord (4.0.2)
+      activemodel (= 4.0.2)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.2)
+      arel (~> 4.0.0)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.2)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
+    acts-as-taggable-on (2.4.1)
+      rails (>= 3, < 5)
+    addressable (2.3.5)
+    arel (4.0.1)
+    atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
+    bcrypt-ruby (3.1.2-x86-mingw32)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
+    builder (3.1.4)
+    cancan (1.6.10)
+    chinese_pinyin (0.6.1)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
+    database_cleaner (1.0.1)
+    debug_inspector (0.0.2)
+    devise (3.2.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    diff-lcs (1.2.5)
+    email_spec (1.5.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
+    erubis (2.7.0)
+    execjs (2.0.2)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
+    hike (1.2.3)
+    htmlentities (4.3.1)
+    hub (1.11.0)
+    i18n (0.6.9)
+    i18n_yaml_generator (0.0.1)
+    jbuilder (1.5.3)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.2.0)
+    jquery-rails (3.0.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    json (1.8.1)
+    kramdown (1.3.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    liquid (2.6.0)
+    mail (2.5.4)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mailgun (0.7)
+      multimap
+      rest-client
+    mime-types (1.25.1)
+    mini_portile (0.5.2)
+    minitest (4.7.5)
+    multi_json (1.8.2)
+    multimap (1.1.2)
+    mysql2 (0.3.13)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
+    nokogiri (1.6.1-x86-mingw32)
+      mini_portile (~> 0.5.0)
+    orm_adapter (0.5.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+    paperclip-qiniu (0.1.0)
+      paperclip
+      qiniu-rs (~> 3.0)
+    polyglot (0.3.3)
+    qiniu-rs (3.4.6)
+      json (~> 1.7)
+      mime-types (~> 1.19)
+      rest-client (~> 1.6)
+      ruby-hmac (~> 0.4)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
+    rack (1.5.2)
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rails (4.0.2)
+      actionmailer (= 4.0.2)
+      actionpack (= 4.0.2)
+      activerecord (= 4.0.2)
+      activesupport (= 4.0.2)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.2)
+      sprockets-rails (~> 2.0.0)
+    rails-i18n (4.0.1)
+      i18n (~> 0.6)
+      rails (~> 4.0)
+    rails_layout (0.5.8)
+    railties (4.0.2)
+      actionpack (= 4.0.2)
+      activesupport (= 4.0.2)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (10.1.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rinku (1.7.3)
+    rolify (3.2.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.4)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.4)
+    rspec-rails (2.14.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    ruby-hmac (0.4.0)
+    ruby-oembed (0.8.9)
+    sanitize (2.0.6)
+      nokogiri (>= 1.4.4)
+    sass (3.2.13)
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0)
+    simple_form (3.0.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+    slodown (0.1.3)
+      coderay (>= 1.0.0)
+      kramdown (>= 0.14.0)
+      rinku (>= 1.7.0)
+      ruby-oembed (~> 0.8.8)
+      sanitize (>= 2.0.0)
+    sprockets (2.10.1)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.0.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (~> 2.8)
+    thor (0.18.1)
+    thread_safe (0.1.3)
+      atomic
+    tilt (1.4.1)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
+    turbolinks (2.1.0)
+      coffee-rails
+    tzinfo (0.3.38)
+    uglifier (2.4.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
+    will_paginate (3.0.5)
+
+PLATFORMS
+  ruby
+  x86-mingw32
+
+DEPENDENCIES
+  actionpack-page_caching
+  acts-as-taggable-on
+  better_errors
+  binding_of_caller
+  bootstrap-sass (>= 3.0.0.0)
+  bootstrap-will_paginate
+  cancan
+  chinese_pinyin
+  ckeditor!
+  coffee-rails (~> 4.0.0)
+  database_cleaner (= 1.0.1)
+  devise
+  email_spec
+  figaro
+  font-awesome-rails
+  htmlentities
+  hub
+  i18n_yaml_generator
+  jbuilder (~> 1.2)
+  jquery-rails
+  liquid
+  mailgun
+  mysql2 (= 0.3.13)
+  nokogiri
+  paperclip
+  paperclip-qiniu
+  quiet_assets
+  rails (~> 4.0.0)
+  rails-i18n (~> 4.0.0.pre)
+  rails_layout
+  rolify
+  rspec-rails
+  sass-rails (~> 4.0.0)
+  simple_form
+  slodown
+  turbolinks
+  uglifier (>= 1.3.0)

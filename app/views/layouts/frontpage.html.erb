@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<% if Admin::Keystore.value_for('html_tag') %>
+  <%= raw Admin::Keystore.value_for('html_tag') %>
+<% else %>
+  <html lang="zh-CN">
+<% end %>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="author" content="master@inruby.com" />
+    <link rel="author" href="humans.txt" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= content_for?(:title) ? yield(:title) : Admin::Keystore.value_for('site_name') %></title>
+    <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : Admin::Keystore.value_for('site_name') %>">
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : Admin::Keystore.value_for('site_name') %>">
+    
+    <%#= stylesheet_link_tag "frontpage", media: "all", "data-turbolinks-track" => true %>
+    <%#= javascript_include_tag "frontpage", "data-turbolinks-track" => true %>
+   
+    <%= render file: @base_dir + '_head.html' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+<% if Admin::Keystore.value_for('body_tag') %>
+  <%= raw Admin::Keystore.value_for('body_tag') %>
+<% else %>
+  <body>
+<% end %>
+
+    <%= render 'layouts/messages' %>
+
+    <% unless params[:search] || params[:tag] || params[:controller] == 'comments' %>
+      <% if @page %>
+        <% if File.exist?( @base_dir + @channel.tmp_detail )%>
+          <%= render file: @base_dir + @channel.tmp_detail %>
+        <% else %>
+          <h1>找不到模版文件： <%= @channel.tmp_detail %> </h1>
+        <% end %>
+      <% else %> 
+        <% case @channel.properties.to_i %>
+        <% when 1 %>
+          <% if File.exist?( @base_dir + @channel.tmp_index )%>
+            <%= render file: @base_dir + @channel.tmp_index %>
+          <% else %>
+            <h1>找不到模版文件： <%= @channel.tmp_index %> </h1>
+          <% end %>
+        <% when 2 %>
+          <script type="text/javascript">
+            window.location.href="<%= @channel.default_url %>" 
+          </script>
+        <% else %>
+          cuwo 
+        <% end %>
+      <% end %>
+    <% end %>
+    
+    <%= yield %>
+
+    <%= render file: @base_dir + '_foot.html' %>
+    
+  </body>
+</html>

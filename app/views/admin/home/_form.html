@@ -1,0 +1,50 @@
+<div id="form" class="list">
+<h2><i class="fa fa-dot-circle-o fa-lg"></i>  如何添加表单功能</h2>
+<p>
+  表单在程序中有一个表(admin_comemnts)对应两个Model(comment, admin_comment)
+  comment Model对应前端<br>
+  admin_comment Model 对应后台<br>
+
+  要添加表单，需要创建一个模版文件：temp_comment.html<br>
+  temp_comment.html 的结构大致如下：</p>
+  <pre>
+    &lt;%= render file: 'public/templetes/unify/_header.html' %&gt;
+
+    &lt;div class="container"&gt;   
+      &lt;!-- Comment Boxes --&gt;
+      &lt;%= yield(:comment) %&gt;
+    &lt;/div&gt;
+
+    &lt;%= render file: 'public/templetes/unify/_footer.html' %&gt;
+  </pre>
+  最重要的是要加： <b> yield(:comemnt)</b>
+
+<h3>在前台添加表单样式</h3>
+<pre>
+  &lt;%= simple_form_for(@comment, html: { class: 'footer-subsribe' } ) do |f| %&gt;                
+
+    &lt;div class="input-group"&gt;
+        &lt;input type="text" class="form-control" name="comment[mobile_phone]" placeholder="请输入您的手机号"&gt;                            
+        &lt;span class="input-group-btn"&gt;
+            &lt;button class="btn-u" type="submit"&gt;立即预定&lt;/button&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;         
+  &lt;% end %&gt;
+</pre>
+</div>
+
+<h3>表单元素</h3>
+<table class="table table-bordered">
+  <tr><td>:name</td><td>String</td><td>comment[name]</td></tr>
+  <tr><td>:mobile_phone</td><td>String</td><td>comment[mobile_phone]</td></tr>
+  <tr><td>:tel_phone</td><td>String</td><td>comment[tel_phone]</td></tr>
+  <tr><td>:email</td><td>String</td><td>comment[email]</td></tr>
+  <tr><td>:qq</td><td>String</td><td>comment[qq]</td></tr>
+  <tr><td>:address</td><td>String</td><td>comment[address]</td></tr>
+  <tr><td>:gender</td><td>String</td><td>comment[gender]</td></tr>
+  <tr><td>:birth</td><td>Date</td><td>comment[birth]</td></tr>
+  <tr><td>:hobby</td><td>String</td><td>comment[hobby]</td></tr>
+  <tr><td>:content</td><td>Text</td><td>comment[content]</td></tr>
+  <tr><td>:content2</td><td>Text</td><td>comment[content2]</td></tr>
+  <tr><td>:content3</td><td>Text</td><td>comment[content3]</td></tr>
+</table>

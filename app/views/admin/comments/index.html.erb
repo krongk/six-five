@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <% @comments.each do |comment| %>
+      <div class="col-xs-12 col-sm-21 col-md-4 col-lg-3">
+        <div class="alert alert-block alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h4><%= comment.mobile_phone %></h4>
+          <%= comment.content.to_s.truncate(300) %>
+          <hr>
+          <i class="fa fa-bookmark"></i> <%= comment.status %>
+          &nbsp;&nbsp;
+          <%= link_to edit_admin_comment_path(comment) do %>
+            <i class="fa fa-edit"></i> 查看/修改
+          <% end %> 
+          <span class="pull-right">
+          <%= link_to comment, method: :delete, data: { confirm: '删除以后无法恢复，确定要删除?' }  do %>
+            <i class="fa fa-trash-o"></i> 删除
+          <% end %></span>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @comments %>
+</div>

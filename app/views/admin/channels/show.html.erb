@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2><%= @admin_channel.title %></h2>
+    <blockquote>
+      <p>
+        <%= link_to '修改', edit_admin_channel_path(@admin_channel), class: 'btn btn-primary btn-warning' %> | 
+        <%= link_to '添加页面', new_admin_page_path(channel: @admin_channel.id), class: 'btn btn-primary btn-info' %> | 
+        <%= link_to '预览', get_preview_url(@admin_channel), target: '_blank', class: 'btn btn-default' %>
+        <%= link_to '返回', admin_channels_path, class: 'btn btn-default' %>
+      </p>
+      <small>对应网站前台的栏目</small>
+    </blockquote>
+    <hr>
+    <p>
+      <strong>类型:</strong>
+      <%= @admin_channel.typo %>
+    </p>
+
+    <p>
+      <strong>栏目名称:</strong>
+      <%= @admin_channel.title %>
+    </p>
+
+    <p>
+      <strong>简略别名:</strong>
+      <%= @admin_channel.short_title %>
+    </p>
+
+    <p>
+      <strong>默认路径:</strong>
+      <%= @admin_channel.default_url %>
+    </p>
+
+    <p>
+      <strong>封面模版:</strong>
+      <%= @admin_channel.tmp_index %>
+    </p>
+    <p>
+      <strong>详细页面模版:</strong>
+      <%= @admin_channel.tmp_detail %>
+    </p>
+    <hr>
+    <%= link_to '删除此栏目', @admin_channel, method: :delete, data: { confirm: '删除以后，将同时删除此栏目下的所有页面，而且无法恢复，请确认要删除?' },class: 'btn btn-default' %>
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-info">
+      <div class="panel-heading">页面列表</div>
+      <% if @pages.empty? %>
+        <div class="panel-body">
+          <p>该栏目没有任何页面，<a href="/admin/pages/new?channel=<%= @admin_channel.id%>" class="alert-link">点击这里添加！</a></p>
+        </div>
+      <% end %>
+
+      <!-- List group -->
+      <ul class="list-group">
+        <% @pages.each do |page| %>
+          <li class="list-group-item">
+            <%= link_to page.title, edit_admin_page_path(page) %>
+            <span class="pull-right">
+              <%= link_to '预览', get_url(page), target: '_blank' %> | 
+              <%= link_to '编辑', edit_admin_page_path(page) %> | 
+              <%= link_to '删除', page, method: :delete, data: { confirm: '删除以后无法恢复，请确认要删除?' }%> 
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <%= will_paginate @pages %>
+  </div>
+</div>
+
+

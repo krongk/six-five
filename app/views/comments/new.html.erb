@@ -1,0 +1,11 @@
+<% content_for :comment do %>
+  <%= render 'form' %>
+<% end %>
+
+<% if File.exist?( @base_dir + 'temp_comment.html' )%>
+  <%= render file: @base_dir + 'temp_comment.html' %>
+<% else %>
+  <h2 class="error">没有找到搜索模版文件！</h2>
+<% end %>
+
+

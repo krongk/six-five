@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <% @images.each do |img| %>
+      <% thumb_img_path = img.path(:thumb).sub(/^.*\/ckeditor_assets\//, '/ckeditor_assets/') %>
+      <% content_img_path = img.path(:content).sub(/^.*\/ckeditor_assets\//, '/ckeditor_assets/') %>
+      <% original_img_path = img.path.sub(/^.*\/ckeditor_assets\//, '/ckeditor_assets/') %>
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="thumbnail" data-toggle="modal" data-target="#picModal" data-dismiss="modal" data-thumb="<%= thumb_img_path %>" data-content="<%= content_img_path %>" data-original="<%= original_img_path %>" >
+          <img src="<%= thumb_img_path %>" alt="">
+        </a> 
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @images %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">图片详情</h4>
+      </div>
+      <div class="modal-body">
+        <div id="modal-body-img">
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+  $(document).on("click", ".thumbnail", function () {
+    $("#modal-body-img").html("<img src='" + $(this).data('content') + "'>");
+    $("#modal-body-img").append("<p><b>原图地址：</b><input style='width: 300px;' value='" + $(this).data('original') + "'></p>");
+    $("#modal-body-img").append("<p><b>大图地址：</b><input style='width: 300px;' value='" + $(this).data('content') + "'></p>");
+    $("#modal-body-img").append("<p><b>小图地址：</b><input style='width: 300px;' value='" + $(this).data('thumb') + "'></p>");
+  });
+</script>

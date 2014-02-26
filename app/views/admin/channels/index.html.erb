@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-2">
+    <h2>栏目管理</h2>
+    <blockquote>
+      <p><%= link_to '添加栏目', new_admin_channel_path, class: 'btn btn-primary btn-small' %></p>
+      <small>对应网站前台的栏目</small>
+    </blockquote>
+    <hr>
+  </div>
+  <div class="col-md-10">
+    <% @admin_channels.each do |channel| %>
+      <div class="panel panel-info">
+        <div class="panel-heading"><i class="fa fa-list"></i> <%= link_to channel.title, admin_channel_path(channel) %></div>
+        <!-- List group -->
+        <ul class="list-group">
+          <% channel.children.each do |ch| %>
+            <%= get_admin_channel_list(ch, 'list-group', 'list-group-item') %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= will_paginate @admin_channels %>
+  </div>
+</div>
+

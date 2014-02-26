@@ -1,0 +1,44 @@
+<%= simple_form_for(@admin_channel) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="col-md-2">
+      <h2>栏目管理</h2>
+      <blockquote>
+        <p>
+          <%= f.button :submit, '提交保存', class: 'btn btn-lg btn-danger' %><br>
+          <small><%= link_to '返回栏目列表', admin_channels_path %></small>
+        </p>
+        <small>对应网站前台的栏目</small>
+      </blockquote>
+      <hr>
+    </div>
+    <div class="col-md-10">
+      <div class="form-inputs">
+        <label class="string optional control-label" for="admin_channel_typo">内容模型：</label>
+        <%= f.select :typo, Admin::Channel::TYPOS, include_blank: false %>
+        <br>
+        <%= f.input :properties, :collection => 
+          [
+            ['频道封面(栏目本身不允许发布文档)', 1],
+            ['外部连接(在<默认路径>处填写网址)', 2]
+          ], include_blank: false %>
+
+        <label class="string optional control-label" for="admin_channel_properties">父级栏目：<small>(没有父级则不选)</small></label>
+        <%= f.select :parent_id, Admin::Channel.all.map { |r| [r.title, r.id, { class: r.id }] }, include_blank: true %>
+
+        <%= f.input :tmp_index, collection: @temp_list, label: '栏目模板：(用于承载本栏目的显示)' %>
+        <%#= f.input :tmp_list, collection: @temp_list  %>
+        <%= f.input :tmp_detail, collection: @temp_list, label: '页面模板：(用于承载本栏目所属页面的显示)' %>
+        <%= f.input :title, placeholder: '用于显示在前台的栏目名称' %>  
+        <%= f.input :short_title, label: '名称简写(不填则程序自动生成)', placeholder: '标题别名，请用全英文，用于生成可读的URL链接， 如"http://www.abc.com/about-us"' %>  
+
+        <%= f.input :default_url, placeholder: '如果栏目属性为‘外部链接’，则需要在这里提供一个完整的外部链接地址，如"http://www.baidu.com"' %>
+        
+        <%= f.input :keywords, placeholder: '关键词用逗号隔开，建议一篇文章3-5个关键词' %>
+        <%= f.input :description, placeholder: '文章摘要，用于SEO描述，用一句话描述文章内容，一般100字以内' %>
+        <%#= f.input :content %>
+        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', :height => '600px'} } %>
+      </div>
+    </div>
+  </div>
+<% end %>

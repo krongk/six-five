@@ -1,0 +1,149 @@
+RainCMS设计思路：
+-> 系统变量
+-> 安装模板
+-> 标签管理（关键词管理）-> 关键词营销
+-> 栏目 -> 页面
+-> 插件：多说评论，友情链接，bshare分享，幻灯片，广告
+
+To do list:
+  ->给form添加popover提示
+  ->模式对话框选择
+  ->缓存管理
+
+## 渲染逻辑
+
+  如果有page, 则render到tmp_detail
+    content 渲染 page.content
+  否则(有channel)
+    如果选择渲染封面(properties == 1)
+      render到tmp_index
+        如果有default_url
+          则content渲染default_url的模版内容
+        否则content渲染channel.content
+    如果选择渲染外部链接(properties == 2)
+      default_url必须给定一个外部链接值
+      程序直接跳转到default_url
+
+***************************
+>针对开发人员
+
+# 公共变量
+ 系统初始化了三个变量：@base_dir, @templete, @temp_list
+
+ application_controller.rb:
+
+    def load_templete
+      @templete = Admin::Keystore.value_for('templete')
+      @templete ||= 'default'
+
+      @base_dir = "#{Rails.root}/public/templetes/#{@templete}/"
+      Dir.chdir(@base_dir)
+      @temp_list = Dir.glob("*.html").sort
+    end
+
+# 如何安装RainCMS
+  
+  ## 1. 安装正常Rails程序下载配置
+
+  ## 2. 初始化数据库
+  >程序默认必须有一个templete和site_name的key
+  
+  运行db/seeds.rb
+    Admin::Keystore.put('templete', 'default')
+    Admin::Keystore.put('site_name', 'Rain CMS')
+
+# 如何安装网页模板
+
+  - 1. 将开发的模板放到public/templetes/下，如模板文件名为：themp_name
+
+  - 2. 设置：Admin::Keystore.put('templete', 'themp_name')
+
+  - 3. 修改模板文件
+    - 将模板index.html文件作为主文件，抽取出head/foot/header/footer块。
+      具体做法是在index.html文件中标记：
+      <-- [[head start]] -->
+        ...
+      <-- [[head end]] -->
+
+    - 将模板文件名称修改为't_xxx.html'
+      一般模板文件是成对的，即一个list/index页面，一个detail页面
+      在里面添加动态内容如erb文件里的一样：<%= code here %>
+
+    - 非模板文件（即独立页面文件，如about.html, team.html, contact.html)
+      把需要保留的部分用以下代码包括起来：
+      <-- [[main start]] -->
+        ...
+      <-- [[main end]] -->
+      
+  - 4. 整理‘栏目’，并用SQL添加到数据库
+      　根据目录short_title, 修改_header.html的链接
+
+  - 5. 运行public/templetes/generate_templetes.rb 生成模板文件temp_xxx.html
+       移除不需要了的t_xxx.html文件
+
+***************************
+>针对设计人员
+
+# 如何开发网页模板
+
+模板文件结构：
+>
+> |templete_name
+>        |assets
+>              css     ---存放css文件
+>              js      ---存放js文件
+>              img     ---存放全局图片，如logo
+>              font    ---存放字体文件
+>              ico     ---存放图标文件
+>        |index.html     ---首页文件，作为模板文件的主要入口(*必须)
+>                           模板文件的固定head部分(常包含meta,title,css等内容)
+>                           模板文件的固定foot部分(常包含js引用,统计代码等)
+>                           模板文件的固定header部分(通用页头)
+>                           模板文件的固定header部分(通用页脚)
+>        |t_blog_list.html   新闻/博客列表模板(*选项)
+>        |t_blog_detail.html 新闻/博客详细页模板(*选项)
+>        |t_product_list.html    产品列表(*选项)
+>        |t_product_detail.html  产品列表(*选项)
+>        |about.html             关于我们(*选项)
+>        |contact.html           联系我们(*选项)
+>        |...                    其它特殊页面.
+
+
+我们主要开发基于Bootstrap的PC/Mobile适配的网页，一个简单的办法是，在网上选择优秀的网页模板Demo后，通过WebZip软件下载一个整套的文件结构，再根据客户需求定制内容和排版。
+
+WebZip的操作办法：在Webzip中打开模板首页，选择菜单”Download”->”Save page +”->”All pages up to 2 links deep from this page(Stay within site)”
+
+## 一些常用的Bootstrap模板资源站：
+
+超级Bootstrap模板库：
+http://www.wrapbootstrap.com/
+
+免费的HTML5 响应式网页模板：
+http://html5up.net/ 
+
+WP & Bootstrap：
+http://www.dxthemes.com/
+
+点击即全屏：
+https://github.com/codrops/FullscreenLayoutPageTransitions
+
+Responsivewebinc：
+http://responsivewebinc.com/bootstrap-themes/premium-bootstrap-themes.html
+
+bootstrapstyler 一个提供主题开发按年付费的公司：
+http://bootstrapstyler.com/
+
+bootstrappage：
+http://www.bootstrappage.com/
+
+livebootstrap：
+http://livebootstrap.com/
+
+Themeforest 大而全：
+http://themeforest.net/category/all
+
+http://mildthemes.com/themes/blat/index.php
+
+分享一篇给网页设计师的文章(有了这篇文章你什么都不需要了)
+http://webdesign.tutsplus.com/articles/roundups/new-to-webdesigntuts-start-here/
+

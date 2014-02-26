@@ -1,0 +1,21 @@
+// import the CSS framework
+@import "bootstrap";
+
+.controls input, select, textarea{
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 300;
+  color: #3276b1;
+}
+
+.help-inline{
+  color: red;
+}
+
+//use dialog to choose images
+.modal-dialog {
+  width: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

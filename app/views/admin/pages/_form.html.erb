@@ -1,0 +1,40 @@
+<%= simple_form_for(@admin_page) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="col-md-2">
+      <h2>页面管理</h2>
+      <blockquote>
+        <p>
+          <%= f.button :submit, '提交保存', class: 'btn btn-primary btn-large btn-warning' %><br>
+          <small><%= link_to '返回页面列表', admin_pages_path %></small>
+        </p>
+        <small>对应网站前台的页面</small>
+      </blockquote>
+      <hr>
+    </div>
+    <div class="col-md-10">
+      <div class="form-inputs">
+        <%= f.association :channel, include_blank: false, prompt: '请选择所属栏目', selected: @admin_page.channel_id || params[:channel].to_i  %>
+        <%#= grouped_collection_select('', 'admin_page[channel_id]', Admin::Channel.where('parent_id is null'), :children, :title, :id, :title, :include_blank => false, prompt: '请选择所属栏目', selected: params[:channel].to_i) %>
+
+        <%= f.input :title, placeholder: '美好切题的标题能使文章的关注度大放异彩' %> 
+        <%= f.input :short_title, label: '名称简写(不填则程序自动生成)', placeholder: '标题别名，请用全英文，用于生成可读的URL链接， 如"http://www.abc.com/about-us"' %>
+        <%= f.input :keywords, placeholder: '关键词用逗号隔开，建议一篇文章3-5个关键词' %>
+        <%= f.input :description, placeholder: '文章摘要，用于SEO描述，用一句话描述文章内容，一般100字以内' %>
+
+        <label>缩略图(
+          <a data-toggle="modal" data-target="#myModal" href="javascript:void(0);">选择</a>)
+        </label>
+        <%= f.input :image_path, placeholder: '网页预览图片路径，如产品图片等', label: false %>
+
+        <%= f.collection_check_boxes :properties, ApplicationHelper::PAGE_PROPERTIES, :first, :last %>
+        <br>
+        <%#= f.input :properties %>
+        <%#= f.input :content %>
+        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "600px"} } %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render :partial => '/admin/pages/image_list_modal_dialog' %>

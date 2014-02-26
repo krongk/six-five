@@ -1,0 +1,113 @@
+<div id="templete" class="list">
+  <h2><i class="fa fa-dot-circle-o fa-lg"></i> 如何创建网页模板</h2>
+  <a name="templete"></a>
+  <p>RainCMS前端的样式，都是基于模版创建而来，不同的模版对应不同的主题和效果，用户可以轻松自由的定制模版。</p>
+  <p>模版的定制规则如下：(参考/templetes/generate_templetes.rb)</p>
+
+  <h3>模版文件结构</h3>
+  <pre>
+    |templetes
+              |templete_name
+                            |assets
+                                  |css
+                                  |js
+                                  |font
+                                  |img
+                            |images
+                            |index.html
+                            |t_blog_list.html
+                            |t_blog_detail.html
+                            |about.html
+  </pre>
+  规则说明：
+  <ul>
+    <li>模版必须放在/public/templetes/目录下</li>
+    <li>[首页]必须名为: index.html</li>
+    <li>[模版页]必须以"t_"打头， 如blog_list.html</li>
+    <li>[内容页]用容易识别的名称命名</li>
+  </ul>
+
+  <p>下面分别介绍[首页],[模版页]和[内容页]</p>
+
+  <h3>定制[首页]</h3>
+  <p>首页作为模版的统一入口，所有公共的css、js、导航、页脚等部分都从首页里面提取出来。</p>
+  <ul>
+    <li>
+      <p>用下面的标记分别把需要提取的部分标记出来</p>
+      <p>&gt;head&lt;部分公共代码（一般是css文件）</p>
+      <pre>
+        &lt;!-- [[head start]] --&gt;
+          ...
+        &lt;!-- [[head end]] --&gt;
+      </pre>
+      <p>网页底部公共代码(一般是js文件和统计代码等)</p>
+      <pre>
+        &lt;!-- [[foot start]] --&gt;
+          ...
+        &lt;!-- [[foot end]] --&gt;
+      </pre>
+      <p>公共导航部分，页头</p>
+      <pre>
+        &lt;!-- [[header start]] --&gt;
+          ...
+        &lt;!-- [[header end]] --&gt;
+      </pre>
+      <p>页脚公共部分，如友情链接、版权信息等</p>
+      <pre>
+        &lt;!-- [[footer start]] --&gt;
+          ...
+        &lt;!-- [[footer end]] --&gt;
+      </pre>
+    </li>
+  </ul>
+
+  <h3>定制[模版页]</h3>
+  <p>模版页作为通用模版调用，如博客系统则有一个列表模版+详细页模版。</p>
+  <p>模版页的修改很简单，通过以下步骤实现:</p>
+  <ul>
+    <li>
+      <p>把模版的名字更改为"t_xxx.html"</p>
+    </li>
+    <li>
+      <p>把css在本页特有的代码，复制到index.html的&lt;head&gt;部分（如果有的话）</p>
+    </li>
+    <li>
+      <p>把js在本页特有的部分，复制到index.html的&lt;foot&gt;部分（如果有的话）</p>
+    </li> 
+    <li>在&lt;body&gt;部分标示出共有的代码：
+      <pre>
+        &lt;!-- [[header start]] --&gt;
+          ...
+        &lt;!-- [[header end]] --&gt;
+
+        &lt;!-- [[footer start]] --&gt;
+          ...
+        &lt;!-- [[footer end]] --&gt;
+      </pre>
+    </li>
+  </ul>
+
+  <h3>定制[内容页]</h3>
+  <p>内容页作为某个独特的网页而存在，比如about.html是为了呈现‘关于我们’栏目的效果，team.html是为了呈现'关于团队'栏目的效果。</p>
+  <p>内容页将会装载到指定的模版页面中，如"temp_default_index.html"模版中，如果内容页作为栏目，那么该栏目下面的页面将会装载到“temp_default_detail.html”模版中， 内容页的修改步骤如下:</p>
+  <ul>
+    <li>
+      <p>通过模版页复制，创建两个文件“t_default_index.html"和"t_default_detail.html"</p>
+    </li>
+    <li>
+      <p>在“t_default_index.html"和"t_default_detail.html"要呈现内容的地方加上： &gt;%= yield(:content) %&lt; </p>
+    </li> 
+    <li>
+      <p>把内容页&gt;body&lt;部分中的header,footer部分用代码标记起来：</p>
+      <pre>
+        &lt;!-- [[header start]] --&gt;
+          ...
+        &lt;!-- [[header end]] --&gt;
+
+        &lt;!-- [[footer start]] --&gt;
+          ...
+        &lt;!-- [[footer end]] --&gt;
+      </pre>
+    </li>
+  </ul>
+</div>

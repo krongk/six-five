@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2><%= @comment.mobile_phone %></h2>
+    <blockquote>
+      <p>
+        <%= link_to '修改状态', edit_comment_path(@comment), class: 'btn btn-primary btn-warning' %> | 
+        <%= link_to '返回', comments_path, class: 'btn btn-default' %>
+      </p>
+    </blockquote>
+    <p>
+      <strong>姓名:</strong> <%= @comment.name %>
+    </p>
+
+    <p>
+      <strong>电话号码:</strong> <%= @comment.tel_phone %>
+    </p>
+
+    <p>
+      <strong>Email:</strong> <%= @comment.email %>
+    </p>
+
+    <p>
+      <strong>QQ:</strong> <%= @comment.qq %>
+    </p>
+
+    <p>
+      <strong>地址:</strong> <%= @comment.address %>
+    </p>
+
+    <p>
+      <strong>性别:</strong> <%= @comment.gender %>
+    </p>
+
+    <p>
+      <strong>出生:</strong> <%= @comment.birth %>
+    </p>
+
+    <p>
+      <strong>爱好:</strong> <%= @comment.hobby %>
+    </p>
+  </div>
+  <div class="col-md-8">
+    <p>
+      <h3>留言内容:</h2>
+      <%= @comment.content %>
+    </p>
+
+    <p>
+      <h3>补充:</h3>
+      <%= @comment.content2 %>
+    </p>
+
+    <p>
+      <h3>其他:</h3>
+      <%= @comment.content3 %>
+    </p>
+  </div>
+</div>

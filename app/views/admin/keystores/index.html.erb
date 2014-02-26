@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2>参数管理</h2>
+    <blockquote>
+      <p><%= link_to '新增参数', new_admin_keystore_path, class: 'btn btn-primary' %></p>
+      <small>设置系统公共参数</small>
+      <br>
+      <small>为两个必填参数：</small>
+      <small>templete: 模板名称</small>
+      <small>site_name: 网站名</small>
+      <small>html_tag: &lt;html&gt;</small>
+      <small>body_tag: &lt;body&gt;</small>
+      <small>search_tmp_path: tmp_search_list.html</small>
+    </blockquote>
+    <hr>
+  </div>
+  <div class="col-md-9">
+    <% @admin_keystores.each do |admin_keystore| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <strong><%= admin_keystore.key %></strong>(<em><%= admin_keystore.description %></em>) 
+          <span class="pull-right">
+            <%= link_to '编辑', edit_admin_keystore_path(admin_keystore) %> | 
+            <%= link_to '删除', admin_keystore, method: :delete, data: { confirm: '删除参数可能会导致网站无法正常访问，你确定吗?' } %>
+          </span>
+        </div>
+        <div class="panel-body">
+          <%= admin_keystore.value %> 
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= will_paginate @admin_keystores %>

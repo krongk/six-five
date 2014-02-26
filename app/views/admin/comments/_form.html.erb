@@ -1,0 +1,32 @@
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.error_notification %>
+<div class="row">
+  <div class="col-md-4">
+    <label class="string optional control-label" for="admin_channel_typo">修改状态：</label>
+    <%= f.select :status, Comment::STATUS, include_blank: true %>
+    <blockquote>
+      <p><%= f.button :submit, class: 'btn btn-large btn-primary' %> | 
+      <a href="/admin/comments" class='btn btn-large btn-default'>返回</a>
+      </p>
+    </blockquote>
+  </div>
+  <div class="col-md-8">
+    <div class="form-inputs">
+      <%= f.input :name, disabled: true  %>
+      <%= f.input :mobile_phone, disabled: true %>
+      <%= f.input :content, disabled: true  %>
+      <%= f.input :tel_phone %>
+      <%= f.input :email %>
+      <%= f.input :qq %>
+      <%= f.input :address %>
+      <%= f.input :gender %>
+      <%= f.input :birth %>
+      <%= f.input :hobby %>
+      <%= f.input :content2 %>
+      <%= f.input :content3 %>     
+    </div>
+    <hr>
+    
+  </div>
+</div>
+<% end %>

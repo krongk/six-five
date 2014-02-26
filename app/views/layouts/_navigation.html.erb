@@ -1,0 +1,51 @@
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">RainCMS</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="#"><span class="blue">Rain</span><span class="orange">CMS</span></a>
+</div>
+<div class="navbar-collapse collapse">
+  <% if user_signed_in? %>
+    <ul class="nav navbar-nav">
+      <li><%= link_to '图片管理', "/admin/home/ckeditor_pictures" %></li>
+      <li><%= link_to '留言管理', "/admin/comments" %></li>
+      <li class="divider"></li>
+      <li><%= link_to '栏目管理', admin_channels_path %></li>
+      <li><%= link_to '页面管理', admin_pages_path %></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to '系统参数', admin_keystores_path %></li>
+          <li><%= link_to '模版管理', "/admin/templetes/index" %></li>
+          
+          <li class="divider"></li>
+          <li><a href="/admin/home/help">使用教程</a></li>
+          <li class="dropdown-header">Nav header</li>
+
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+  <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <% if current_user.has_role? :admin %>
+        <li>
+        <%= link_to '用户管理', users_path %>
+        </li>
+      <% end %>
+      <li>
+      <%= link_to '修改密码', edit_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to '退出', destroy_user_session_path, :method=>'delete' %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to '登录', new_user_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</div><!--/.nav-collapse -->

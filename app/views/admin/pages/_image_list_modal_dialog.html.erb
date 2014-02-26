@@ -1,0 +1,30 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">图片浏览</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="modal-ul">
+          <% @image_list.each do |img_path| %>
+            <li><a href="#" class="choose-image" data-title="<%= img_path %>" data-dismiss="modal">
+            <img src="<%= img_path %>" title="<%= img_path.to_s.sub(/^.*\/(.*)$/, '\1') %>" />
+            </a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+  $(document).on("click", ".choose-image", function () {
+    var image_path = $(this).data('title');
+    $("#admin_page_image_path").val(image_path);
+  });
+</script>

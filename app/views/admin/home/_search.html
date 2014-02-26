@@ -1,0 +1,39 @@
+<div id="search" class="list">
+  <h2><i class="fa fa-dot-circle-o fa-lg"></i>  如何添加搜索功能</h2>
+
+  <p>实现搜索的两个条件：</p>
+  <ol>
+    <li>创建一个<b>temp_search.html</b>的模版文件，用于显示搜索结果</li>
+    <li>通过form_tag 创建一个表单</li>
+  </ol>
+  <h3>controller </h3>
+  <pre>
+    def search
+      @pages = Admin::Page.search(params[:search]).page(params[:page])
+      @channel ||= Admin::Channel.first 
+    end
+  </pre>
+
+  <h3>route</h3>
+  <pre>
+    match '/search(/page/:page)', to: "welcome#search", via: :get, as: 'search'
+  </pre>
+
+  <h3>views/welcome/search.html.erb</h3>
+  <pre>
+    &lt;% if File.exist?( @base_dir + 'temp_search.html' )%&gt;
+      &lt;%= render file: @base_dir + 'temp_search.html' %&gt;
+    &lt;% else %&gt;
+      &lt;h2 class="error"&gt;没有找到搜索模版文件！&lt;/h2&gt;
+    &lt;% end %&gt;
+  </pre>
+
+  <h3>表单</h3>
+  <pre>
+    &lt;%= form_tag search_path, :method =&gt; 'get' do %&gt;
+      &lt;input type="text" class="form-control" name="search" placeholder="输入要查询的内容"&gt;
+      &lt;span class="input-group-btn"&gt; &lt;button class="btn-u" type="submit"&gt;搜索&lt;/button&gt;&lt;/span&gt;
+    &lt;% end %&gt;
+  </pre>
+
+</div>

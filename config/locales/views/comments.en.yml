@@ -1,0 +1,20 @@
+---
+zh-HK:
+  comments:
+    index:
+      title: Comments
+    show:
+      title: Comment
+    edit:
+      title: Editing Comment
+    new:
+      title: New Comment
+  flash:
+    comments:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

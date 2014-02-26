@@ -1,0 +1,46 @@
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.error_notification %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            必填内容
+          </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <%= f.input :name %>
+            <%= f.input :mobile_phone %>
+            <%= f.input :content %>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            更多选项
+          </a>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse out">
+          <div class="accordion-inner">
+            <%= f.input :tel_phone %>
+            <%= f.input :email %>
+            <%= f.input :qq %>
+            <%= f.input :address %>
+            <%= f.input :gender %>
+            <%= f.input :birth %>
+            <%= f.input :hobby %>
+            <%= f.input :content2 %>
+            <%= f.input :content3 %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <%= f.button :submit, class: 'btn btn-large btn-primary' %>  
+  </div>
+</div>
+<% end %>
+

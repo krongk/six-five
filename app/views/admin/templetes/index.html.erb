@@ -1,0 +1,13 @@
+<h1>模版文件管理</h1>
+<p>浏览每个模版文件，实时修改，修改后要更新缓存才能看到最终效果。</p>
+
+<ul>
+  <%  @temp_list.each do |temp| %>
+    <li><%= link_to temp, "/admin/templetes/edit?f=#{temp}"%></li>
+  <% end %>
+</ul>
+<hr/>
+
+<a class="btn btn-default btn-sm" href="/admin/templetes/update_cache">
+  <i class="fa fa-refresh fa-spin"></i> 更新系统缓存
+</a>
