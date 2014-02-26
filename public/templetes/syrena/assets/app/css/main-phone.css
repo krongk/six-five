@@ -31,7 +31,11 @@
 		width: 98%;		/* default is 2 coloumns */
 	}
 
-	
+	.app-header > .app-title{
+		font-size: 22px;
+		line-height: 24px;
+	}
+
 	/**
 	 * Visibility class
 	 */

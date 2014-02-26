@@ -1,3 +1,4 @@
+<% @page = Admin::Page.recent(1).first %>
 <!-- content wrapper to define fullpage or container -->
 <!-- (recomended: dont change the id value) -->
 <section id="wrapper" class="container">
@@ -15,8 +16,30 @@
             <!-- define your awesome apps here -->
             <!-- (recomended: dont change the id value) -->
             <section id="content-main" class="content-main">
-            <%= render file: 'public/templetes/syrena/temp_article_detail.html' %>
-            </section><!-- /content main -->
+                
+                <!-- your app content -->
+                <div class="content-app">
+                    <!-- app header -->
+                    <div class="app-header">
+                        <h1 class="app-title"><%= raw @page.title %></h1>
+                    </div><!-- /app header -->
+
+                    <!-- app body -->
+                    <div class="app-body">
+                        
+                        <!-- app content here -->
+                        <div class="center-block center-box">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box article-content" style="margin: 0">
+                                        <%= raw @page.content %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             
             <!-- define your extra apps here -->
             <!-- (recomended: dont change the id value) -->
