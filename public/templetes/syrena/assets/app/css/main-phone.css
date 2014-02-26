@@ -37,7 +37,9 @@
 	 */
 	.view-sm{ display: inline; } 	/* visible from 480  */
 	.hide-sm{ display: none; }
-
+	.app-body .center-box {
+		width: 99%;
+	}
 
 	/* Message page */
 	.message-content{
@@ -84,4 +86,8 @@
 	 * Visibility class
 	 */
 	.hide-xs{ display: none; }
+
+	.app-body .center-box {
+		width: 99%;
+	}
 }
