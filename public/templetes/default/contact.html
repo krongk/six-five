@@ -1,0 +1,83 @@
+﻿
+<div id="map" class="map"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<form role="form">
+				<legend>Contact us</legend>
+				<div class="form-group row">
+					<div class="col-xs-6">
+						<label for="first">First name</label>
+						<input type="email" class="form-control" placeholder="John">
+					</div>
+					<div class="col-xs-6">
+						<label for="last">Last name</label>
+						<input type="last" class="form-control" placeholder="Doe">
+					</div>
+				</div>
+				<div class="form-group">
+				<label for="message">Your message</label>
+					<textarea name="message" cols="30" rows="10" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="email">Your email</label>
+					<input type="email" class="form-control" placeholder="email@example.com">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
+		<div class="col-sm-6">
+			<h3>Let's get in touch</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, tempore, repellat, dolores ab quae aliquid fuga sunt modi aperiam quos eum minus dolor.</p>
+			<h3>Follow us</h3>
+			<ul class="inline">
+				<li><a href="#"><i class="fc-webicon twitter"></i></a></li>
+				<li><a href="#"><i class="fc-webicon facebook"></i></a></li>
+				<li><a href="#"><i class="fc-webicon googleplus"></i></a></li>
+			</ul>
+			<h3>Our address</h3>
+			<address>
+				1111-A Nowhere Lane <br>
+				Outta Sight <br>
+				State 90378 <br>
+				ph: <a href="">123456789</a> <br>
+				<a href="mailto:email@email.com">email@email.com</a>
+			</address>
+		</div>
+	</div>
+</div>
+
+<!-- special for map -->
+<script src="/templetes/default/assets/js/jquery.1.10.2.min.js"></script>
+<script src="/templetes/default/assets/js/modernizr-svgdetect.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="/templetes/default/assets/js/gmaps.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+		// Contact map setup
+		// visit: http://hpneo.github.io/gmaps/
+		if ( $('#map').length ) {
+
+			map = new GMaps({
+			  div: '#map',
+			  lat: -12.043333,
+			  lng: -77.028333,
+			  scrollwheel: false,
+			});
+
+			map.addMarker({
+			  lat: -12.043333,
+			  lng: -77.028333,
+			  title: '瑞信云科技',
+			  infoWindow: {
+				  content: '<h4>Angel</h4><p>Place here any content you want</p>'
+				}
+			});
+
+		};	
+		
+	});
+</script>

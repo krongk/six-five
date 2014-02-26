@@ -1,0 +1,59 @@
+                                                
+<%= render file: 'public/templetes/default/_header.html' %>
+<% form_tag search_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<div class="light-container">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="posts-list col-sm-9 col-lg-9">
+
+        <ul class="pager">
+            <li class="previous"><a href="/blog/<%= params[:page].to_i > 0 ?  params[:page].to_i - 1 :  '' %>">&larr; Older</a></li>
+            <li class="next"><a href="<%= params[:page].to_i > 0 ?  params[:page].to_i + 1 :  '' %>">Newer &rarr;</a></li>
+        </ul>
+
+        <% @pages.each do |page| %>
+          <div class="blog-post">
+            <div class="post-featured-image top">
+              <%= image_tag page.image_path, title: page.title, alt: page.title, class: "retina" %>
+            </div>
+            <h2 class="post-title"><%= page.title %></h2>
+            <p>
+              <%= page.description %>
+            </p>
+            <a href="<%= get_url(page) %>" class="btn btn-primary">更多...</a>
+          </div>
+          <hr/>
+        <% end %>
+        
+        <ul class="pager">
+          <li class="previous"><a href="/blog/<%= params[:page].to_i > 0 ?  params[:page].to_i - 1 :  '' %>">&larr; Older</a></li>
+          <li class="next"><a href="<%= params[:page].to_i > 0 ?  params[:page].to_i + 1 :  '' %>">Newer &rarr;</a></li>
+        </ul>
+
+      </div>
+
+      <div class="col-lg-3 col-sm-3">
+        <%= render file: 'public/templetes/default/_sidebar.html' %>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<%= render file: 'public/templetes/default/_footer.html' %>
+
+    
+    
+    
+    
+    
+    
+    

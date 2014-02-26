@@ -1,0 +1,48 @@
+<!-- content wrapper to define fullpage or container -->
+<!-- (recomended: dont change the id value) -->
+<section id="wrapper" class="container">
+    <!-- define side left theme -->
+    <%= render file: 'public/templetes/syrena/_left_side.html' %>
+
+    <!-- define content theme, use data-swipe="true" to enable gesture event -->
+    <!-- (recomended: dont change the id value) -->
+    <section id="content" class="content">
+        <!-- define your content header here -->
+        <%= render file: 'public/templetes/syrena/_header.html' %>
+
+        <!-- define content row -->
+        <div class="content-spliter">
+            <!-- define your awesome apps here -->
+            <!-- (recomended: dont change the id value) -->
+            <section id="content-main" class="content-main">
+                
+                <!-- your app content -->
+                <div class="content-app">
+                    <!-- app header -->
+                    <div class="app-header">
+                        <h3 class="app-title"><%= raw @page.title %></h3>
+                    </div><!-- /app header -->
+
+                    <!-- app body -->
+                    <div class="app-body">
+                        
+                        <!-- app content here -->
+                        <div class="center-block center-box">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box">
+                                        <%= raw @page.content %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- define your extra apps here -->
+            <!-- (recomended: dont change the id value) -->
+            <%= render file: 'public/templetes/syrena/_right_side.html' %>
+        </div><!-- /content spliter -->
+    </section><!-- /content -->
+</section><!-- /wrapper -->

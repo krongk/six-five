@@ -16,8 +16,11 @@ class WelcomeController < ApplicationController
    
     #page first, then channel ?
     if params[:id]
-      @page = Admin::Page.find_by(id: params[:id])
+      @page = Admin::Page.find_by(short_title: params[:id])
+      @page ||= Admin::Page.find_by(id: params[:id])
     end
+    @page ||= Admin::Page.first
+    
     @channel = @page.channel if @page
 
     #short_title use for frontpage cache

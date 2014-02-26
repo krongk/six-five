@@ -1,0 +1,62 @@
+                                                            
+<%= render file: 'public/templetes/default/_header.html' %>
+<div class="light-container">
+  <div class="container">
+    <div class="row">
+      <div class=" col-sm-12 col-lg-12">
+        <div class="blog-post">
+          <h1 class="post-title"><%= @page.title %></h1>
+          <div class="row-fluid clearfix">
+            <div class="col-lg-3 meta-text">
+              <p><%= @page.keywords%></p>
+<%= form_tag search_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+            </div>
+            <div class="col-lg-9" style="background: #fff;">
+              <%= raw @page.content %>
+              <hr>
+              <br>
+              <!-- Duoshuo Comment BEGIN -->
+              <div class="ds-thread"></div>
+              <script type="text/javascript">
+              var duoshuoQuery = {short_name:"yufuwu"};
+                (function() {
+                  var ds = document.createElement('script');
+                  ds.type = 'text/javascript';ds.async = true;
+                  ds.src = 'http://static.duoshuo.com/embed.js';
+                  ds.charset = 'UTF-8';
+                  (document.getElementsByTagName('head')[0] 
+                  || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+                </script>
+              <!-- Duoshuo Comment END -->
+            </div>
+          </div>
+
+          <div class="separated-unit">
+            <h3>猜你会喜欢....</h3>
+            <div class="row-fluid clearfix">
+              <% Admin::Page.recent(3).each do |page| %>
+                <div class="col-lg-4 col-sm-4 col-4">
+                  <a href="<%= get_url(page) %>" class="hover-plus">
+                    <%= image_tag page.image_path, title: page.title, alt: page.keywords %>
+                    <h4><%= page.title %>.</h4>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!-- COMMENTS -->
+      </div>
+    </div>
+  </div>
+</div>
+<%= render file: 'public/templetes/default/_footer.html' %>
+
+    

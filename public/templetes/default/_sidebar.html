@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <% @channel.children.each do |channel| %>
+    <ul>
+      <legend><%= channel.title %></legend>
+      <% channel.pages.order("updated_at DESC").limit(5).each do |page| %>
+        <li><%= link_to page.title, get_url(page), title: page.title, target: '_blank' %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
