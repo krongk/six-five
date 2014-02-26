@@ -20,9 +20,6 @@ db/*.sqlite3
 /log/*
 /tmp/*
 
-/public/news_pictures/
-/public/templetes/
-
 # various artifacts
 **.war
 *.rbc
