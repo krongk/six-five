@@ -21,10 +21,10 @@ class Migrator
 	def migrate(post)
 		begin
 		  page = AdminPage.find_or_initialize_by(title: post.title, author: post.author)
-		  page.content = post.content
+		  page.content = post.content.gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
 		  #［英国］达纳·左哈　伊恩·马歇尔
-		  page.keywords = post.author.strip.gsub(/\s+/, ',')
-		  page.short_title = Pinyin.t(post.title).gsub(/\s+/, '-')
+		  page.keywords = post.author.strip
+		  #page.short_title = Pinyin.t(post.title)
 		  page.user_id = 1
 		  page.channel_id = 3
 		  page.save!
@@ -42,6 +42,7 @@ class Migrator
 		puts 'start post...'
 		ForagerPost.where(is_migrated: 'n').find_each do |post|
 			migrate(post)
+			puts post.id
 		end
 		puts 'done...'
 	end

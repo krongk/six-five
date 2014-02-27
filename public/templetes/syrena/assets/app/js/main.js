@@ -16,63 +16,21 @@ $(function(){
 
 
 	// Progress autoatically with pace
-	window.paceOptions = {
-	  // Disable the 'elements' source
-	  elements: false,
+			// window.paceOptions = {
+			//   // Disable the 'elements' source
+			//   elements: false,
 
-	  // Only show the progress on regular and ajax-y page navigation,
-	  // not every request
-	  restartOnRequestAfter: false
-	}
-	window.Pace.start();
+			//   // Only show the progress on regular and ajax-y page navigation,
+			//   // not every request
+			//   restartOnRequestAfter: false
+			// }
+			// window.Pace.start();
 	
-
-
-
-	/**
-	 * Theme switcher
-	 */
-	/*
-	var theme_tags = '<div class="theme-switcher">'
-        +'<ul class="list-unstyled">'
-        +'    <li><a id="theme-switcher" href="#"><i class="icon ion-contrast"></i></a></li>'
-        +'    <li><a data-theme="default" class="theme bg-peterriver"></a></li>'
-        +'    <li><a data-theme="midnight" class="theme bg-midnightblue"></a></li>'
-        +'    <li><a data-theme="light" class="theme bg-cloud"></a></li>'
-        +'</ul>'
-    	+'</div>';
-	//$('body').append(theme_tags);
-	
-	$('#theme-switcher').on('click', function(e){
-		e.preventDefault();
-
-		$('.theme-switcher').toggleClass('open');
-	});
-	$('.theme-switcher .theme').on('click', function(e){
-		e.preventDefault();
-
-		var $this = $(this),
-			theme = $this.attr('data-theme');
-
-		if (theme == 'default') {
-			$('#theme-css').attr('href', 'assets/app/css/syrena-admin-theme-default.css');
-		}
-		else if(theme == 'midnight'){
-			$('#theme-css').attr('href', 'assets/app/css/syrena-admin-theme-midnight.css');
-		}
-		else if(theme == 'light'){
-			$('#theme-css').attr('href', 'assets/app/css/syrena-admin-theme-light.css');
-		}
-	})
-	*/
-
 	/**
 	 * Bootstrap manual 
 	 */
 	$('[data-toggle="tooltip"]').tooltip();		// tooltips
 	$('[data-toggle="popover"]').popover();		// popovers
-
-
 
 
 	/**
@@ -141,43 +99,43 @@ $(function(){
 
 
 	
-	// visibility elements on different viewports
-	var initVisibilityElms = function(){
-		var viewport = $.viewportW();	// detect viewport with verge
+	// // visibility elements on different viewports
+	// var initVisibilityElms = function(){
+	// 	var viewport = $.viewportW();	// detect viewport with verge
 
-		// large desktop
-		if( viewport >= 1680 ){
-			// action on large desktop
-			if ($('.content-aside').length > 0) {
-				$('.content-main').addClass('content-main-md');
-			}
-			$('.content-aside').addClass('open');
-		}
-		else{
-			// callback
-			$('.content-main').removeClass('content-main-md');
-			$('.content-aside').removeClass('open');
-		}
+	// 	// large desktop
+	// 	if( viewport >= 1680 ){
+	// 		// action on large desktop
+	// 		if ($('.content-aside').length > 0) {
+	// 			$('.content-main').addClass('content-main-md');
+	// 		}
+	// 		$('.content-aside').addClass('open');
+	// 	}
+	// 	else{
+	// 		// callback
+	// 		$('.content-main').removeClass('content-main-md');
+	// 		$('.content-aside').removeClass('open');
+	// 	}
 
-		// tablet viewport and less
-		if( viewport <= 768){
-			$('.content').addClass('content-lg');	// toggle content mode
+	// 	// tablet viewport and less
+	// 	if( viewport <= 768){
+	// 		$('.content').addClass('content-lg');	// toggle content mode
 
-			$('#toggle-search').addClass('hide');
-			// place your elements with hide on tablet and small screen above
-			// $(elements).toggleClass('hide');
-		}
-	}
-	initVisibilityElms();		// init visibility elements on load
-	// handle visibility elements on window resize
-	$(window).on('resize', function() {
-		// fixed mode type on tablet and phone
-		var on_type = $('#smart-search').find('input').is(':focus');
+	// 		$('#toggle-search').addClass('hide');
+	// 		// place your elements with hide on tablet and small screen above
+	// 		// $(elements).toggleClass('hide');
+	// 	}
+	// }
+	// initVisibilityElms();		// init visibility elements on load
+	// // handle visibility elements on window resize
+	// $(window).on('resize', function() {
+	// 	// fixed mode type on tablet and phone
+	// 	var on_type = $('#smart-search').find('input').is(':focus');
 
-		if (!on_type) {
-			initVisibilityElms();	// handle visibility elements on window resize
-		}
-	});
+	// 	if (!on_type) {
+	// 		initVisibilityElms();	// handle visibility elements on window resize
+	// 	}
+	// });
 
 
 
@@ -209,97 +167,7 @@ $(function(){
 
 
 	
-	// gesture event on #content for toggle content
-	// if your device doesn't support touch event you can manually add data-swipe="true" on #content
-	// var is_touch_device = 'ontouchstart' in document.documentElement,
-	//	touch_content_selector = (is_touch_device) ? $('#content')  : $('#content[data-swipe="true"]') ;
-	/*
-	$('#content[data-swipe="true"]').swipe({
-	  	swipeStatus:function(event, phase, direction, distance, duration, fingers){
-
-	  		// default padding left
-	  		var pl = 300;
-	  		if(direction == 'right'){
-	  			pl = distance;
-	  		}
-	  		else if(direction == 'left'){
-	  			pl = pl - distance;
-	  		}
-
-	  		// handle padding left max/min value
-	  		if(pl >= 300) 
-	  			pl = 300;
-  			else if(pl <= 0) 
-  				pl = 0;
-
-
-	  		if (phase == 'move') {
-	  			// side left is close
-		  		if( $(this).hasClass('content-lg') ){
-			  		if(direction == 'right'){
-			  			// going to open side left
-				  		$(this).css({
-			  				'left': pl +'px',
-			  				'z-index': 3
-			  			});
-			  		}
-		  		}
-		  		// side left is open
-		  		else{
-		  			if(direction == 'left'){
-		  				// going to close side left
-				  		$(this).css({
-			  				'left': pl +'px',
-			  				'padding-left': 0,
-			  				'z-index': 3
-			  			});
-			  		}
-		  		}
-	  		}
-	  		else if (phase == 'end') {
-  				$(this).css({
-	  				'left': '0'	// setting pos left by default
-	  			});
-
-  				if(direction == 'right'){
-  					if (pl < 200) {
-  						// close side left
-	  					$(this).addClass('content-lg').css({
-	  						'padding-left': 0,
-	  						'z-index': 3
-	  					})
-	  				}
-	  				else{
-	  					// open side left
-	  					$(this).removeClass('content-lg').css({
-	  						'padding-left': '300px',
-	  						'z-index': 1
-	  					})
-	  				}
-  				}
-  				else if(direction == 'left'){
-  					if (pl < 100) {
-  						// close side left
-	  					$(this).addClass('content-lg').css({
-	  						'padding-left': 0,
-	  						'z-index': 3
-	  					})
-	  				}
-	  				else{
-	  					// open side left
-	  					$(this).removeClass('content-lg').css({
-	  						'padding-left': '300px',
-	  						'z-index': 1
-	  					})
-	  				}
-  				}
-  			};
-	  	}
-	});
-	*/
-
-
-	// toggle aside
+  // toggle aside
 	$('#toggle-aside').on('click', function(e){
 		e.preventDefault();
 
@@ -311,84 +179,6 @@ $(function(){
 		content_main.toggleClass('content-main-md');
 		content_aside.toggleClass('open');
 	})
-
-
-
-
-	/*
-	 *  Chats module demo
-	 */
- 	// toggle contact-chat
-    $('.cm-contact-item').on('click', function(e){
-        e.preventDefault();
-
-        $('.cm-content').addClass('open');
-        $('.cm-contact').addClass('fixed');
-    })
-    $('.cm-content-heading').on('click', function(e){
-        e.preventDefault();
-
-        $('.cm-contact').removeClass('fixed');
-        $('.cm-content').removeClass('open');
-    })
-
-
-    // demo chat
-    $('.cm-content-chats').animate({ scrollTop: $(this).scrollTop() + $(this).height() }, 300);
-    // manually adding height of chat-in/out buble
-    $('.chat-in, .chat-out').each(function(){
-        var $this = $(this),
-            msg_box_height = $this.find('.chat-msg').innerHeight();
-
-        if (msg_box_height > 40) {  // couse min-height is 40px
-            $this.css({
-                'height' : msg_box_height + 'px'
-            })
-        };
-    })
-
-    // demo sending chat
-    $('#frm-send-chat').on('submit', function(e){
-        e.preventDefault();
-
-        var $this = $(this),
-            content_chats = $('.cm-content-chats'),
-            msg = $('[name="chat-msg"]').val(),
-            new_chat = '<div class="chat-out">'
-                    +    '<div class="chat-avatar">'
-                    +        '<img src="assets/app/img/avatar4.png" title="" />'
-                    +    '</div>'
-                    +    '<div class="chat-msg">'
-                    +        '<p>'+ msg +'</p>'
-                    +        '<time datetime="2013-12-13T20:00">Now</time>'
-                    +    '</div>'
-                    +'</div>';
-
-        if ($.trim(msg) != '') {
-
-            content_chats.append(new_chat);
-
-            // set height for new_chat
-            var new_chat_out = $('.cm-content-chats > div[class*="chat-"]').last(),
-                new_chat_height = new_chat_out.find('.chat-msg').innerHeight();
-
-            new_chat_out.css({
-                'height': new_chat_height + 'px'
-            });
-
-            var scrollBottom = content_chats.scrollTop() + content_chats.height();
-            content_chats.animate({ scrollTop: scrollBottom }, 300);
-
-            // back to first rule
-            $('[name="chat-msg"]').val('');
-        }
-        else{
-        	// back to first rule
-            $('[name="chat-msg"]').val('');
-        }
-    })
-	
-
 
 
 	/**

@@ -71,6 +71,20 @@ module ApplicationHelper
     end
   end
 
+  def get_random_page(ip)
+    return Admin::Page.find(rand(100) + 1) if ip.nil?
+    if cookies[ip.to_s]
+      ids = cookies[ip.to_s].split(',')
+      #See http://thinkingeek.com/2011/07/04/easily-select-random-records-rails/
+      page = Admin::Page.where(["id not in (?)", ids]).sample(1).first
+      cookies[ip.to_s] = cookies[ip.to_s] + ',' + page.id.to_s
+    else
+      page =  Admin::Page.all.sample(1).first
+      cookies[ip.to_s] = page.id.to_s
+    end
+    page
+  end
+
   #前台获得下拉列表菜单
   #默认调用方法：get_menu('product')
   #level: 显示的层级深度，默认为2级；如果要显示3级，则调用：get_menu('product', 3)
