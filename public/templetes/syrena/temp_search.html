@@ -1,0 +1,97 @@
+<% @page = Admin::Page.recent(1).first %>
+<!-- content wrapper to define fullpage or container -->
+<!-- (recomended: dont change the id value) -->
+<section id="wrapper" class="container">
+    <!-- define side left theme -->
+    <%= render file: 'public/templetes/syrena/_left_side.html' %>
+
+    <!-- define content theme, use data-swipe="true" to enable gesture event -->
+    <!-- (recomended: dont change the id value) -->
+    <section id="content" class="content">
+        <!-- define your content header here -->
+        <%= render file: 'public/templetes/syrena/_header.html' %>
+
+        <!-- define content row -->
+        <div class="content-spliter">
+            <!-- define your awesome apps here -->
+            <!-- (recomended: dont change the id value) -->
+             <section id="content-main" class="content-main">   
+                <!-- your app content -->
+                <div class="content-app">
+               
+                    <!-- app body -->
+                    <div class="app-body">
+                        
+                        <!-- app content here -->
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <!-- result nav -->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#general-search" data-toggle="tab">搜索结果</a></li>
+                                </ul><!-- /result nav -->
+
+                                <form class="form-search-result" action="#" role="form">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="搜索更多..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit">搜索</button>
+                                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">条件选择</span>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li><a href="#">频道内搜索</a></li>
+                                                    <li><a href="#">搜索全站</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">搜索已读</a></li>
+                                                </ul>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /form-group -->
+                                </form><!-- /form -->
+
+                                <!-- result panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="general-search">
+                                        <div class="row">
+                                        <% @pages.each do |page| %>
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        <div class="panel-body-heading bordered">
+                                                            <div class="pb-object pb-object-circle">
+                                                                <img src="/templetes/syrena/assets/app/img/avatar1.png" alt="">
+                                                            </div><!-- /pb-object -->
+                                                            <h3 class="pb-title">
+                                                                <%= page.title %>
+                                                                <small> <%= page.updated_at %></small>
+                                                            </h3><!-- /pb-title -->
+                                                        </div><!-- /panel-body-heading -->
+                                                        <div class="panel-tags">
+                                                            <a href="<%= get_url(page) %>" class="panel-tag-item"><span class="pt-border"></span> 点击阅读</a>
+                                                            <a href="#" class="panel-tag-item"><span class="pt-border bg-wisteria"></span>标为已读</a>
+                                                        </div>
+                                                    </div><!-- /panel-body -->
+                                                </div><!-- /panel -->
+                                            </div><!-- /cols -->
+                                        <% end %>
+                                        </div><!-- /row -->
+                                    </div><!-- /users-search -->
+                                </div><!-- /tab-content -->
+
+                                <div class="search-pagination">
+                                    <%= will_paginate @pages %>
+                                </div><!-- /search-pagination -->
+                            </div><!-- /panel-body -->
+                        </div><!-- /search-result panel -->
+                    </div><!-- /app body -->
+                </div><!-- /content app -->
+            </section><!-- /content main -->
+            
+            <!-- define your extra apps here -->
+            <!-- (recomended: dont change the id value) -->
+            <%= render file: 'public/templetes/syrena/_right_side.html' %>
+        </div><!-- /content spliter -->
+    </section><!-- /content -->
+</section><!-- /wrapper -->

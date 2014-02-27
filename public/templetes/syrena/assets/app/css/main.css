@@ -14,6 +14,7 @@ body{
 	height: 100%;
 	overflow: hidden;
 }
+
 .row{
 	margin:0;
 	margin-bottom: 20px;
@@ -346,6 +347,12 @@ body{
 			transform: translateX(-300px);
 			right: -1px;
 		}
+			.content-main .center-box{
+				width: 75%;
+			}
+			.content-main-md .center-box{
+				margin-left: 300px;
+			}
 
 			.content-app{
 				position: relative;
@@ -360,8 +367,6 @@ body{
 					position: relative;
 					width: 100%;
 					padding: 10px;
-					height: 56px;
-
 					z-index: 99;
 				}
 				.content-app.fixed-header > .app-header{
@@ -392,17 +397,23 @@ body{
 					.app-header > .app-title{
 						margin: 0;
 						padding: 0;
-						font-size: 1.2em;
-						font-weight: 500;
-						line-height: 36px;
+						display: block;
+						font-family: Georgia, 'Times New Roman', Times, 'microsoft yahei', 微软雅黑, serif;
+						font-size: 36px;
+						line-height: 50px;
 						text-align: center;
 					}
 
 				.app-body{
 					padding: 10px;
 					overflow-x: hidden;
-
 					z-index: 1;
+				}
+				.app-body .article-content{
+					font-family: Georgia, 'Times New Roman', Times, 'microsoft yahei', 微软雅黑, serif;
+					font-size: 18px;
+					font-weight: 100;
+					line-height: 35px;
 				}
 				.content-app.fixed-header > .app-body{
 					height: 100%;
@@ -2028,15 +2039,6 @@ body{
 /* End Module */
 
 
-
-
-/* util */
-.app-body .center-box{
-	width:75%;
-	/*min-width:724px;*/
-}
-
-
 /* Morries JS - charts style */
 .chart{
 	width: 100%;
@@ -2069,3 +2071,4 @@ body{
 	margin: 0.1em 0;
 }
 /* end morries */
+

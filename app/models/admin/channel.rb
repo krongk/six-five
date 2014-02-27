@@ -6,7 +6,7 @@ class Admin::Channel < ActiveRecord::Base
                           dependent: :destroy
   belongs_to :parent, class_name: "Admin::Channel"
 
-  TYPOS = %w[article image product]
+  TYPOS = %w[article image product other]
   
   acts_as_taggable
 
