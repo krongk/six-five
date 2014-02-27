@@ -18,12 +18,7 @@
                 
                 <!-- your app content -->
                 <div class="content-app">
-                    <!-- app header -->
-                    <div class="app-header">
-                        <h3 class="app-title"><%= raw @page.title %></h3>
-                    </div><!-- /app header -->
-
-                    <!-- app body -->
+                      <!-- app body -->
                     <div class="app-body">
                         
                         <!-- app content here -->
@@ -31,6 +26,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box">
+                                        <h2 class="app-title"><%= raw @page.title %></h2>
                                         <%= raw @page.content %>
                                     </div>
                                 </div>

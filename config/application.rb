@@ -24,6 +24,9 @@ module RainCms
 
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     
+    #auto load extras
+    config.autoload_paths += %W(#{config.root}/extras)
+    
     #config.assets.precompile += %W( pages.css.scss pages.css)
 
     # Settings in config/environments/* take precedence over those specified here.

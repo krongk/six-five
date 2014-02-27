@@ -198,7 +198,7 @@ $(function(){
 		
 		var content = $('#content');
 
-		// $(this).toggleClass('active');
+		//$(this).toggleClass('active');
 
 		content.toggleClass('content-lg');
 

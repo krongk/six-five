@@ -8,6 +8,16 @@ class Admin::Page < ActiveRecord::Base
   validates :short_title, format: { with: /\A[a-zA-Z0-9-]+\z/,
     message: "名称简写只能包括字母数字和横线" }
 
+  def generated_markeddown_content
+    Markdowner.to_html(self.content, {:coderay => true})
+  end
+
+  def content=(desc)
+    self[:content] = desc.to_s.rstrip
+    self.content = self.generated_markeddown_content
+    puts "..........."
+  end
+
   #cache
   after_save :expire_cache
   def expire_cache
