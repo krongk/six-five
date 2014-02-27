@@ -29,9 +29,9 @@
                                     <div class="box article-content">
                                         <h2 class="app-title"><%= @page.title %>   <small><%= @page.author %></small></h2>
                                         <hr/>
-                                        [<%= request.ip.to_s %>|<%= cookies[request.ip.to_s] %>|<%= @page.id %>]
-                                        <br>
                                         <%= raw @page.content %>
+                                        <hr/>
+                                        <%= render file: 'public/templetes/syrena/_baidu_share.html' %>
                                     </div>
                                 </div>
                             </div>

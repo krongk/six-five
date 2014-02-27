@@ -29,6 +29,8 @@
                                         <h2 class="app-title"><%= @page.title %>   <small><%= @page.author %></small></h2>
                                         <hr/>
                                         <%= raw @page.content %>
+                                        <hr/>
+                                        <%= render file: 'public/templetes/syrena/_baidu_share.html' %>
                                     </div>
                                 </div>
                             </div>

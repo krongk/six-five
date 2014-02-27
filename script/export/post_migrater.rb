@@ -21,7 +21,7 @@ class Migrator
 	def migrate(post)
 		begin
 		  page = AdminPage.find_or_initialize_by(title: post.title, author: post.author)
-		  page.content = post.content.gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
+		  page.content = post.content.gsub(/(\r\n){2,}/, "<br>\n").gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
 		  #［英国］达纳·左哈　伊恩·马歇尔
 		  page.keywords = post.author.strip
 		  #page.short_title = Pinyin.t(post.title)
