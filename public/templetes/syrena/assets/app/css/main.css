@@ -302,15 +302,17 @@ body{
 		}
 
 		.content-header > .content-title{
+			font-family: 'microsoft yahei' 微软雅黑;
 			position: absolute;
 			left: 0;
 			right: 0;
-			font-size: 1.4em;
+			font-size: 1.8em;
 			font-weight: 500;
 			margin: 0 !important;
 			padding: 0 !important;
 			line-height: 60px;
 			text-align: center;
+			text-shadow: gray 0.1em 0.1em 0.1em;
 			z-index: 5;
 		}
 	

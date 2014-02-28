@@ -27,6 +27,8 @@ class Admin::PagesController < Admin::ApplicationController
     @admin_page = Admin::Page.new(admin_page_params)
     @admin_page.user_id = current_user.id
     @admin_page.short_title = get_short_title('page', @admin_page.title) if @admin_page.short_title.blank?
+    @admin_page.properties = params[:properties].join(',')
+
     respond_to do |format|
       if @admin_page.save
         update_tag(@admin_page)
@@ -89,8 +91,8 @@ class Admin::PagesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_page_params
-      params.require(:admin_page).permit(:user_id, :channel_id, :title, :short_title, :properties, :keywords, 
+      params.require(:admin_page).permit(:user_id, :channel_id, :title, :short_title, :author, :keywords, 
         :description, :image_path, :content,
-        :tag_id, :context, :taggable)
+        :tag_id, :context, :taggable, :properties => [])
     end
 end

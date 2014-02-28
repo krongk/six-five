@@ -15,6 +15,8 @@ $(function(){
 	$.extend(verge); // enxtend verge (viewport reader, docs: https://github.com/ryanve/verge) to jquery
 
 
+	//$("#article_static_url").on('mouseup', function() { $(this).select(); });
+
 	// Progress autoatically with pace
 			// window.paceOptions = {
 			//   // Disable the 'elements' source

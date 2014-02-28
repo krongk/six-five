@@ -12,11 +12,12 @@ class WelcomeController < ApplicationController
   # 1. a URL query must has channel except root
   # 2. If has page, the channel is page.channel, not care the params
   def index
-    #render text: request.ip and return
+    #render text: params and return
    
     #page first, then channel ?
     if params[:id]
       @page = Admin::Page.find_by(id: params[:id])
+      @page ||= Admin::Page.find_by(short_title: params[:id])
     end
     @channel = @page.channel if @page
 

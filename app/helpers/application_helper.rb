@@ -63,7 +63,7 @@ module ApplicationHelper
   #use for Frontpage: get production frontpage path
   def get_url(obj)
     if obj.class == Admin::Page
-      "/#{obj.channel.short_title}/#{obj.id}"
+      "/#{obj.channel.short_title}-#{obj.id}"
     elsif obj.class == Admin::Channel
       "/#{obj.short_title}"
     else

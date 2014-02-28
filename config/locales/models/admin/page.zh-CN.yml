@@ -10,6 +10,7 @@ zh-CN:
           title: 页面标题
           short_title: 简略标题
           properties: 页面属性
+          author: 作者
           keywords: 关键词
           description: 摘要描述
           image_path: 缩略图

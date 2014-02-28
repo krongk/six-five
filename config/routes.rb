@@ -33,7 +33,7 @@ RainCms::Application.routes.draw do
   #  'sanction', 
   #  :constraints => { :dik => /\d{4}.\d{2}.\d{2}/,  
   #  :classify_type => /title|date|skip/ }
-  match '/:channel(/:id)', to: "welcome#index", via: :get
+  match '/:channel-(:id)', to: "welcome#index", via: :get
   match '/:channel(/page/:page)', to: "welcome#index", via: :get
 
 
