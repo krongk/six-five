@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box article-content">
-                                        <h2 class="app-title"><%= @page.title %>   <small><%= @page.author %></small></h2>
+                                        <h2 class="app-title"><%= @page.title %>     <small><%= @page.author %></small></h2>
                                         <hr/>
                                         <%= raw @page.content %>
                                         <hr/>
@@ -41,7 +41,7 @@
                                                 </div>
                                             </li>
                                             <li>
-                                                <a id="article_static_url" href="<%= 'http://www.65960.com' + get_url(@page) %>" ><%= 'www.65960.com' + get_url(@page) %></a>
+                                                <%= 'www.65960.com' + get_url(@page) %>
                                             </li>
                                   
                                         </ul>

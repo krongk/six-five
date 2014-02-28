@@ -84,7 +84,7 @@ $(function(){
 	 * Side left Menu rule
 	 */
 	$('.side-nav-child').prev().on('click', function(e){
-		e.preventDefault();
+		//e.preventDefault();
 
 		var $this = $(this),
 			target = $this.attr('href');
@@ -92,7 +92,7 @@ $(function(){
 		$(target).addClass('open');
 	})
 	$('.side-nav-back').on('click', function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var $this = $(this),
 			target = $this.parent().parent();
 
