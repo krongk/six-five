@@ -51,8 +51,8 @@ class WelcomeController < ApplicationController
     
     #统一访问路径，使URL呈唯一性
     if @page
-      if request.path != "/#{@channel.short_title}/#{@page.id}"
-        redirect_to "/#{@channel.short_title}/#{@page.id}"
+      if request.path != "/#{@channel.short_title}-#{@page.id}"
+        redirect_to "/#{@channel.short_title}-#{@page.id}"
       end
     end
 

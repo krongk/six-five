@@ -1,3 +1,4 @@
+<% @page ||= get_random_page(request.ip) %>
 <!-- content wrapper to define fullpage or container -->
 <!-- (recomended: dont change the id value) -->
 <section id="wrapper" class="container">
@@ -31,6 +32,19 @@
                                         <%= raw @page.content %>
                                         <hr/>
                                         <%= render file: 'public/templetes/syrena/_baidu_share.html' %>
+                                        
+                                        <ul class="list-inline">
+                                            <li data-toggle="tooltip" data-placement="bottom" title="" data-original-title="本文固定地址">
+                                                <div class="spinner spinner-sm spinner-double-bounce">
+                                                    <div class="double-bounce bg-success"></div>
+                                                    <div class="double-bounce bg-success"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a id="article_static_url" href='javascript: alert($("#article_static_url").html());' ><%= 'http://www.65960.com' + get_url(@page) %></a>
+                                            </li>
+                                  
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

@@ -53,7 +53,7 @@ module ApplicationHelper
   #use for Admin: preview id, production use short_title to cache.
   def get_preview_url(obj)
     if obj.class == Admin::Page
-      "/#{obj.channel.id}/#{obj.id}"
+      "/#{obj.channel.id}-#{obj.id}"
     elsif obj.class == Admin::Channel
       "/#{obj.id}"
     else

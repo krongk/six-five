@@ -27,7 +27,6 @@ class Admin::PagesController < Admin::ApplicationController
     @admin_page = Admin::Page.new(admin_page_params)
     @admin_page.user_id = current_user.id
     @admin_page.short_title = get_short_title('page', @admin_page.title) if @admin_page.short_title.blank?
-    @admin_page.properties = params[:properties].join(',')
 
     respond_to do |format|
       if @admin_page.save
@@ -51,6 +50,7 @@ class Admin::PagesController < Admin::ApplicationController
       return
     end
     @admin_page.user_id = current_user.id
+
     respond_to do |format|
       if @admin_page.update(admin_page_params)
         update_tag(@admin_page)
