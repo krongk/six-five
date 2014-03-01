@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
   #detect if a mobile device
   def mobile_device?
-    request.user_agent =~ /Mobile|webOS/
+   !!(request.user_agent =~ /Mobile|webOS/)
   end
   helper_method :mobile_device?
 
