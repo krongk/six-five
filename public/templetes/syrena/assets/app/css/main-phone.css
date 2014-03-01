@@ -31,19 +31,29 @@
 		width: 98%;		/* default is 2 coloumns */
 	}
 
+	/*xj add*/
+	.phone-no-padding{
+		padding: 0px;
+	}
+
 	.app-header > .app-title{
 		font-size: 22px;
 		line-height: 24px;
 	}
 
+	.app-body{
+		padding: 0px;
+	}
+
+	.app-body .center-box {
+		width: 100%;
+	}
 	/**
 	 * Visibility class
 	 */
 	.view-sm{ display: inline; } 	/* visible from 480  */
 	.hide-sm{ display: none; }
-	.app-body .center-box {
-		width: 99%;
-	}
+	
 
 	/* Message page */
 	.message-content{
