@@ -23,16 +23,16 @@ class Forager
     index = $1 if last_post && last_post.url =~ /http:\/\/www.duanwenxue.com\/article\/(\d+).html/i
     puts index
     index = index.to_i
-    total_count = index + 10
+    total_count = index + 10000000
     begin
       begin
         index += 1
         url = "http://www.duanwenxue.com/article/#{index}.html"
         doc = Nokogiri::HTML(open(url).read)
         main = doc.at("div.main-left")
+
         begin
           channel = main.at("div.content-nav h2").text
-          title = main.at("div.content-title h1").text.gsub(/\s+/, ' ')
           author = main.at("div.content-title .writer span")
           author.search("a").remove
           author = author.text
@@ -44,6 +44,8 @@ class Forager
           puts "error on author:"
           puts ex1
         end
+
+        title = main.at("div.content-title h1").text.gsub(/\s+/, ' ')
         content = main.at("div.content")
         content.search("p.space").remove
         content.search("div.content-in-top").remove
@@ -52,8 +54,8 @@ class Forager
           post = ForagerPost.find_or_initialize_by(author: author, title: title)
           post.source = @source
           post.content = text.strip
+          post.rant_count = rant_count
           post.channel = channel
-          post.page_html = main.text
           post.url = url
           post.save!
         puts url
@@ -62,6 +64,7 @@ class Forager
         index += 1
         retry
       end
+      sleep(2)
     end until index > total_count
    
   end
