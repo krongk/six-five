@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Is migrated:</strong>
+  <%= @admin_forager.is_migrated %>
+</p>
+
+<p>
+  <strong>Is processed:</strong>
+  <%= @admin_forager.is_processed %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @admin_forager.source %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @admin_forager.author %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @admin_forager.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @admin_forager.content %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @admin_forager.tag %>
+</p>
+
+<p>
+  <strong>Channel:</strong>
+  <%= @admin_forager.channel %>
+</p>
+
+<p>
+  <strong>Rant count:</strong>
+  <%= @admin_forager.rant_count %>
+</p>
+
+<p>
+  <strong>Post date:</strong>
+  <%= @admin_forager.post_date %>
+</p>
+
+<%= link_to 'Edit', edit_admin_forager_path(@admin_forager) %> |
+<%= link_to 'Back', admin_foragers_path %>

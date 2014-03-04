@@ -1,0 +1,27 @@
+<!-- List group -->
+<ul class="list-group">
+  <% admin_foragers.each do |page| %>
+    <li class="list-group-item">
+      <% if page.is_migrated == 'n' %>
+        <span class="label label-info">未合并</span>
+      <% end %>
+      <% if page.is_migrated == 'y' %>
+        <span class="label label-success">已合并</span>
+      <% end %>
+      <% if page.is_migrated == 'f' %>
+        <span class="label label-danger">合并失败</span>
+      <% end %>
+
+      <%= link_to page.title, edit_admin_forager_path(page) %>
+      <span class="pull-right">
+        <%= link_to edit_admin_forager_path(page) do %>
+          <i class="fa fa-edit"></i> 编辑
+        <% end %> | 
+        <%= link_to page, method: :delete, data: { confirm: '删除以后无法恢复，确定要删除?' }  do %>
+          <i class="fa fa-trash-o"></i> 删除
+        <% end %> 
+      </span>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate @admin_foragers %>

@@ -11,6 +11,10 @@ RainCms::Application.routes.draw do
     resources :channels
     resources :keystores
     resources :comments
+    resources :foragers do 
+      resources :sources
+    end
+
     get "home/ckeditor_pictures"
     get "home/help"
     get "templetes/index"
@@ -28,7 +32,7 @@ RainCms::Application.routes.draw do
   #match search/tag special path
   match '/search(/page/:page)', to: "welcome#search", via: :get, as: 'search'
   match '/tag/:tag(/page/:page)', to: "welcome#tag", as: 'tag', via: :get
-  
+
   #match '/:profession/:state_code/:dik/:classify_type/(:action(/:id))' => 
   #  'sanction', 
   #  :constraints => { :dik => /\d{4}.\d{2}.\d{2}/,  

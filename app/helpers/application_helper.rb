@@ -103,7 +103,7 @@ module ApplicationHelper
       str_arr << %{</ul></li>}
       str_arr.join("\n").html_safe
     else
-      %{<li><a href="#{get_url(parent_channel)}">#{parent_channel.title}</a></li>}.html_safe
+      %{<li class="side-nav-item"><a href="#{get_url(parent_channel)}"><i class="nav-item-icon icon ion-laptop"></i> #{parent_channel.title}</a></li>}.html_safe
     end
   end
 

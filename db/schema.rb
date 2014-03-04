@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124050217) do
+ActiveRecord::Schema.define(version: 20140304020704) do
 
   create_table "admin_channels", force: true do |t|
     t.integer  "user_id"
@@ -53,6 +53,24 @@ ActiveRecord::Schema.define(version: 20140124050217) do
     t.datetime "updated_at"
   end
 
+  create_table "admin_foragers", force: true do |t|
+    t.string   "is_migrated",  default: "n"
+    t.string   "is_processed", default: "n"
+    t.string   "source",       default: "user"
+    t.string   "author"
+    t.string   "title"
+    t.text     "content"
+    t.string   "tag"
+    t.string   "channel"
+    t.integer  "rant_count"
+    t.date     "post_date"
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "admin_keystores", force: true do |t|
     t.string   "key"
     t.string   "value"
@@ -68,17 +86,19 @@ ActiveRecord::Schema.define(version: 20140124050217) do
     t.integer  "channel_id"
     t.string   "title"
     t.string   "short_title"
+    t.string   "author",      limit: 128
     t.string   "properties"
     t.string   "keywords"
     t.string   "description"
     t.string   "image_path"
-    t.text     "content"
+    t.text     "content",     limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "admin_pages", ["channel_id"], name: "index_admin_pages_on_channel_id", using: :btree
   add_index "admin_pages", ["short_title"], name: "index_admin_pages_on_short_title", using: :btree
+  add_index "admin_pages", ["title", "author"], name: "unq__author_title", using: :btree
   add_index "admin_pages", ["user_id"], name: "index_admin_pages_on_user_id", using: :btree
 
   create_table "ckeditor_assets", force: true do |t|
@@ -96,6 +116,26 @@ ActiveRecord::Schema.define(version: 20140124050217) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "forager_posts", force: true do |t|
+    t.string  "is_migrated",  limit: 50,         default: "n", null: false
+    t.string  "is_processed", limit: 50,         default: "n", null: false
+    t.string  "source",       limit: 128,                      null: false
+    t.string  "author",       limit: 128
+    t.string  "title",                                         null: false
+    t.text    "content",      limit: 2147483647,               null: false
+    t.text    "page_html",    limit: 2147483647
+    t.string  "url",          limit: 512
+    t.string  "tag",          limit: 128
+    t.string  "channel",      limit: 128
+    t.integer "rant_count"
+  end
+
+  add_index "forager_posts", ["author", "title"], name: "unq__title_author", unique: true, using: :btree
+  add_index "forager_posts", ["author"], name: "idx__author", using: :btree
+  add_index "forager_posts", ["is_migrated"], name: "idx__migrated", using: :btree
+  add_index "forager_posts", ["is_processed"], name: "idx__processed", using: :btree
+  add_index "forager_posts", ["title"], name: "idx__title", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

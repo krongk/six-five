@@ -1,0 +1,25 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      admin/forager: 文章采集
+    attributes:
+      admin/forager:
+        is_migrated: 是否合并
+        is_processed: 是否审核
+        source: 来源
+        author: 作者
+        title: 标题
+        content: 内容
+        tag: 标签
+        channel: 分类
+        rant_count: 阅读量
+        post_date: 发表时间
+        name: 姓名
+        email: 电子邮件
+        message: 给编辑的留言
+        source_url: 原文地址
+    errors:
+      forager: 
+  helpers:
+    forager: 

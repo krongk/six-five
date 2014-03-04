@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-info">
+      <div class="panel-heading">采集文章列表</div>
+      <% if @admin_foragers.empty? %>
+        <div class="panel-body">
+          <p>还没有任何页面，<a href="/admin/foragers/new" class="alert-link">点击这里添加！</a></p>
+        </div>
+      <% end %>
+
+      <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#home" data-toggle="tab" >全部</a></li>
+          <li><a href="#profile" data-toggle="tab">未合并</a></li>
+          <li><a href="#messages" data-toggle="tab">合并失败</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="home"><%= render partial: 'list', locals: {admin_foragers: @admin_foragers} %></div>
+          <div class="tab-pane fade" id="profile"><%= render partial: 'list', locals: {admin_foragers: @admin_foragers_unmigrated} %></div>
+          <div class="tab-pane fade" id="messages"><%= render partial: 'list', locals: {admin_foragers: @admin_foragers_fmigrated} %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h2>采集页面管理</h2>
+    <blockquote>
+      <p><%= link_to '添加页面', new_admin_forager_path, class: 'btn btn-primary btn-info' %></p>
+      <small>对应网站前台的页面</small>
+    </blockquote>
+    <hr>
+    <div class="list-group">
+      <% @admin_foragers.source.size.each do |source| %>
+        <%= link_to "?source=#{source[0]}", class: "list-group-item" do %>
+          <%= source[0] %> <span class="badge"><%= source[1] %></span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <blockquote>
+      <%= form_tag admin_foragers_path, :method => 'get' do %>
+        <p>
+          <label>选择来源：</label>
+          <%= select_tag :source, options_for_select(Admin::Forager.source.size.map{|s| s[0]}), include_blank: true %>
+        </p>
+        <p>
+          <label>标题包含：</label>
+          <%= text_field_tag :title, params[:title] %>
+        </p>
+        <p>
+          <label>作者包含：</label>
+          <%= text_field_tag :author, params[:author] %>
+        </p>
+        <label>&nbsp;</label><%= submit_tag "搜 索", :class => 'btn btn-primary', :name => nil %>
+      <% end %>
+    </blockquote>
+
+  </div>
+
+</div>
+

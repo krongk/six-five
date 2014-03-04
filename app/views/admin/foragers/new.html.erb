@@ -1,0 +1,35 @@
+<%= simple_form_for(@admin_forager) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-inputs">
+        <%= f.input :source, as: :hidden, input_html:{ value: "user"} %>
+        <%= f.input :title %>
+        <%= f.input :tag %>
+        <%= f.input :content, input_html: { style: "height: 600px;"}%>
+        <%= f.input :author %>
+        <%#= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :message %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2>文章提交</h2>
+      <blockquote>
+        <div class="row">
+          <p>
+            <%= f.button :submit, '提交给编辑', class: 'btn btn-primary btn-large btn-success' %>
+          </p>
+
+          <small><%= link_to '返回首页', '/' %></small>
+          <small>
+            感谢您的支持，您提交的文章会经过编辑审核以后，提交到首页~
+          </small>
+        </p>
+      </blockquote>
+      <hr>
+      
+    </div>
+  </div>
+<% end %>

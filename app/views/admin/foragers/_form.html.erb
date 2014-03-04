@@ -1,0 +1,41 @@
+<%= simple_form_for(@admin_forager) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-inputs">
+        <%= f.input :source, disabled: true %>
+        <%= f.input :author %>
+        <%= f.input :title %>
+        <%= f.input :channel %>
+        <%= f.input :tag %>
+        <%= f.input :content, input_html: { style: "height: 600px;"}%>
+        <%= f.input :rant_count %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :message %>
+        <%= f.input :post_date %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2>采集合并管理</h2>
+      <blockquote>
+        <div class="row">
+          <p>
+            <%= f.button :submit, '合并到页面', class: 'btn btn-primary btn-large btn-success' %>
+          </p>
+          <p>
+            <%= link_to @admin_forager, method: :delete, data: { confirm: '删除以后无法恢复，确定要删除?' }, class: 'btn btn-primary btn-large btn-warning'  do %>
+                <i class="fa fa-trash-o"></i> 删除
+            <% end %>
+          </p>
+          <small><%= link_to '返回列表', admin_foragers_path %></small>
+          <p>原文地址：<%= link_to @admin_forager.source_url, @admin_forager.source_url, target: '_blank' %>
+          </p>
+        </p>
+      </blockquote>
+      <hr>
+      
+    </div>
+  </div>
+<% end %>

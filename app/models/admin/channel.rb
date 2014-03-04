@@ -12,7 +12,7 @@ class Admin::Channel < ActiveRecord::Base
 
   validates :typo, :title, :short_title, :tmp_index, :tmp_detail, presence: true
   validates :short_title, format: { with: /\A[a-zA-Z0-9-]+\z/,
-    message: "名称简写只能包括字母数字和横线" }
+    message: "简写只能包括字母数字和横线" }
 
   #cache
   after_save :expire_cache

@@ -1,0 +1,23 @@
+---
+en:
+  active_record:
+    models:
+      admin:
+        forager: Forager
+    attributes:
+      admin:
+        forager:
+          is_migrated: Is migrated
+          is_processed: Is processed
+          source: Source
+          author: Author
+          title: Title
+          content: Content
+          tag: Tag
+          channel: Channel
+          rant_count: Rant count
+          post_date: Post date
+    errors:
+      forager: 
+  helpers:
+    forager: 
