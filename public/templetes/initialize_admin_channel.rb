@@ -76,8 +76,8 @@ class DataExtractor
     AdminPage.create!(
       :user_id => 1,
       :channel_id => 2,
-      :title => '关于六五微文学网'
-      :short_title => 'about'
+      :title => '关于六五微文学网',
+      :short_title => 'about',
       :content => '关于'
     )
     #3
