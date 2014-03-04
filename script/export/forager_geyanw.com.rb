@@ -71,10 +71,10 @@ class Forager
             title = article.at("div.title h2").text
             #author = article.at(".article_author").text
             text = article.at(".content").text
-            post = ForagerPost.find_or_initialize_by(title: title.strip)
+            post = ForagerPost.find_or_initialize_by(url: url)
             post.content = text.strip
             post.source = @source
-            post.url = url
+            post.title = title.strip
             post.tag = tag
             post.channel = '微语录'
             post.save!
