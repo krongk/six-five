@@ -56,7 +56,7 @@ class DataExtractor
       :properties   => 1,
       :default_url  => nil,
       :tmp_index    => 'temp_article_detail.html',
-      :tmp_detail   => 'temp_article_detail.html',,
+      :tmp_detail   => 'temp_article_detail.html',
       :keywords     => '六五微文学：微写作,微小说,微语录,微笑话,微诗歌,微观点,微情书',
       :description  => '六五微文学网收录微写作,微小说,微语录,微笑话,微诗歌,微观点,微情书'
     )
