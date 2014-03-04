@@ -77,11 +77,12 @@ module ApplicationHelper
       ids = cookies[ip.to_s].split(',')
       #See http://thinkingeek.com/2011/07/04/easily-select-random-records-rails/
       page = Admin::Page.where(["id not in (?)", ids]).sample(1).first
-      cookies[ip.to_s] = cookies[ip.to_s] + ',' + page.id.to_s
+      cookies[ip.to_s] = cookies[ip.to_s] + ',' + page.id.to_s unless page.nil?
     else
       page =  Admin::Page.all.sample(1).first
-      cookies[ip.to_s] = page.id.to_s
+      cookies[ip.to_s] = page.id.to_s unless page.nil?
     end
+    page ||= Admin::Page.first
     page
   end
 

@@ -38,27 +38,29 @@
                     </a>
                 </li><!-- /coverage -->
                 <li class="side-nav-item">
-                    <a href="#channels">
+                    <a href="#layouts">
                         <i class="nav-item-caret"></i>
                         <i class="nav-item-icon icon ion-ios7-monitor-outline"></i>
                         频道
                     </a>
-                    <ul id="channels" class="side-nav-child">
+                    <ul id="layouts" class="side-nav-child">
                         <li class="side-nav-item-heading">
                             <a href="#" class="side-nav-back">
                                 <i class="nav-item-caret"></i>
                                 频道
                             </a>
-                        </li><!-- /header channels child -->
-                        <%= get_menu('channel') %>
-                        <li class="side-nav-item">
-                            <a href="layout_blank.html">
-                                <i class="nav-item-icon icon ion-laptop"></i>
-                                Blank Page
-                            </a>
-                        </li><!-- /blank -->
-                    </ul><!-- /channels child -->
-                </li><!-- /channel -->
+                        </li><!-- /header layouts child -->
+                        <% Admin::Channel.get('channel').children.each do |channel| %>
+                            <li class="side-nav-item">
+                                <a href="<%= get_url(channel) %>">
+                                    <i class="nav-item-icon icon ion-laptop"></i>
+                                    <%= channel.title %>
+                                </a>
+                            </li><!-- /blank -->
+                        <% end %>
+                    </ul><!-- /layouts child -->
+                </li><!-- /layout -->
+               
                 <li class="side-nav-item">
                     <a href="/tags">
                         <span class="badge">3</span>

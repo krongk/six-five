@@ -14,6 +14,11 @@ class Admin::Channel < ActiveRecord::Base
   validates :short_title, format: { with: /\A[a-zA-Z0-9-]+\z/,
     message: "简写只能包括字母数字和横线" }
 
+  #get channel by short_title
+  def self.get(short_title)
+    self.where(short_title: short_title).first
+  end
+
   #cache
   after_save :expire_cache
   def expire_cache
