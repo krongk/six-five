@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box article-content" style="margin: 0">
-                      
+<% @tags ||= Admin::Page.tag_counts_on(:tags) %>                 
 <% tag_cloud(@tags, %w(btn-primary btn-success btn-info btn-danger btn-warning)) do |tag, css_class| %>
    <%= link_to(tag_path(tag.name), class: "btn btn-ion #{css_class}")  do%>
        <i class="icon-tags"></i><%= tag.name %>

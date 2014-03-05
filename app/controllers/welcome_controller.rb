@@ -27,8 +27,8 @@ class WelcomeController < ApplicationController
     @channel ||= Admin::Channel.find_by(id: params[:channel])
 
     #root index.html has no params
-    if params.delete_if {|k, v| ['controller', 'action'].include?(k)}.empty?
-      @channel ||= Admin::Channel.first 
+    if @channel.nil? && params.delete_if {|k, v| ['controller', 'action'].include?(k)}.empty?
+      @channel = Admin::Channel.first 
     end
     
     not_found if @channel.nil?
@@ -40,14 +40,14 @@ class WelcomeController < ApplicationController
     elsif params[:tag]
       @pages = Admin::Page.tagged_with(params[:tag]).order("updated_at DESC").page(params[:page])
     else
-      #@pages = @channel.pages.order("updated_at DESC").page(params[:page])
-      @pages = Admin::Page.joins(:channel).where(["admin_channels.id = ? OR admin_channels.parent_id = ?", @channel.id, @channel.id]).order("admin_pages.updated_at DESC").page(params[:page])  
+      @pages = @channel.pages.order("updated_at DESC").page(params[:page])
+      #@pages = Admin::Page.joins(:channel).where(["admin_channels.id = ? OR admin_channels.parent_id = ?", @channel.id, @channel.id]).order("admin_pages.updated_at DESC").page(params[:page])  
     end
     #tag cloud
-    @tags = Admin::Page.tag_counts_on(:tags)
+    #@tags = Admin::Page.tag_counts_on(:tags)
 
     #comment
-    @comment = Comment.new
+    #@comment = Comment.new
     
     #统一访问路径，使URL呈唯一性
     if @page

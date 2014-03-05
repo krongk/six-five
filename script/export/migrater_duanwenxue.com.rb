@@ -21,16 +21,20 @@ class Migrator
   
   def migrate(post)
     begin
-      page = AdminPage.find_or_initialize_by(title: post.title, author: post.author)
-      page.content = post.content.gsub(/(\r\n){2,}/, "<br>\n").gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
-      #［英国］达纳·左哈　伊恩·马歇尔
-      page.keywords = [post.channel.strip, post.author.strip].reject{|s| s == ''}.compact.join(',')
-      #page.short_title = Pinyin.t(post.title)
-      page.user_id = 1
-      page.channel_id = 3
-      page.save!
-
-      post.is_migrated = 'y'
+      channel = AdminChannel.where(title: post.channel).first
+      if channel.nil?
+        post.is_migrated = 'bad channel'
+      else
+        page = AdminPage.find_or_initialize_by(title: post.title, author: post.author)
+        page.content = post.content.gsub(/(\r\n){2,}/, "<br>\n").gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
+        page.keywords = post.tag.strip
+        page.short_title = Pinyin.t(page.title).gsub(/[^a-zA-Z0-9-]+/, '-')
+        page.user_id = 1
+        page.channel_id = channel.id
+        page.save!
+        puts page.id
+        post.is_migrated = 'y'
+      end
       post.save!
     rescue => ex
       puts ex.message
@@ -59,6 +63,7 @@ class Migrator
     ForagerPost.where(source: @source, is_migrated: 'n').find_each do |post|
       migrate(post)
       puts post.id
+      #break
     end
     puts 'done...'
   end
