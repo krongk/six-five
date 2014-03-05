@@ -55,11 +55,11 @@ class Migrator
       #break
     end
 
-    # puts 'start post...'
-    # ForagerPost.where(source: @source, is_migrated: 'n').find_each do |post|
-    #   migrate(post)
-    #   puts post.id
-    # end
+    puts 'start post...'
+    ForagerPost.where(source: @source, is_migrated: 'n').find_each do |post|
+      migrate(post)
+      puts post.id
+    end
     puts 'done...'
   end
 end
