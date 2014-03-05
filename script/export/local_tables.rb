@@ -14,5 +14,15 @@ LocalBase.connection.execute("set names 'utf8'")
 class ForagerPost < LocalBase
 end
 
+class ForagerRunKey < LocalBase
+end
+
+class AdminForager < LocalBase
+end
+
+class AdminChannel < LocalBase
+end
+
 class AdminPage < LocalBase
 end
+

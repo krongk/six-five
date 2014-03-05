@@ -41,10 +41,25 @@ class Migrator
 
   def run
     puts 'start post...'
-    ForagerPost.where(source: @source, is_migrated: 'n').find_each do |post|
-      migrate(post)
+    ForagerPost.where(source: @source, is_processed: 'n').find_each do |post|
+      page_html = post.content
+      page_html = page_html.gsub(/(\r\n\s+.*\.\.\.\[阅读全文\])/, '')
+      page_html = page_html.gsub(/(\r\n){2,}/, "<br>\n").gsub(/\r\n/, "<br>\n").gsub(/\n/, "<br>\n")
+      page_html = page_html.gsub(/(\s+<br><br>\n\s+.*)$/, '')
+      page_html = page_html.gsub(/(\s*<br><br>\n\s*.*..\[阅读全文\])$/, '')
+
+      post.page_html = page_html
       puts post.id
+      post.is_processed = 'y'
+      post.save!
+      #break
     end
+
+    # puts 'start post...'
+    # ForagerPost.where(source: @source, is_migrated: 'n').find_each do |post|
+    #   migrate(post)
+    #   puts post.id
+    # end
     puts 'done...'
   end
 end

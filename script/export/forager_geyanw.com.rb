@@ -52,42 +52,51 @@ class Forager
     end
   end
   
-  def run
-    puts 'start post...'
-    i = 0
-    begin
-      begin
-        @list_arr.each do |list|
-          tag = list[0]
-          list_url = list[1]
-          adoc = Nokogiri::HTML(open(list_url).read)
-          adoc.at(".newlist").search("h2 a").each do |link|
-            u = link.attributes['href'].value
-            url = "http://www.geyanw.com" + u
-            puts url
+  def init_run_keys
+    puts "init"
+    @list_arr.each do |list|
+      tag = list[0]
+      list_url = list[1]
+      adoc = Nokogiri::HTML(open(list_url).read)
+      adoc.at(".newlist").search("h2 a").each do |link|
+        u = link.attributes['href'].value
+        url = "http://www.geyanw.com" + u
+        puts url
+        ForagerRunKey.find_or_create_by(url: url, tag: tag)
+      end
+    end
+  end
 
-            doc = Nokogiri::HTML(open(url).read)
-            article = doc.at("div.viewbox")
-            title = article.at("div.title h2").text
-            #author = article.at(".article_author").text
-            text = article.at(".content").text
-            post = ForagerPost.find_or_initialize_by(url: url)
-            post.content = text.strip
-            post.source = @source
-            post.title = title.strip
-            post.tag = tag
-            post.channel = '微语录'
-            post.save!
-            
-            sleep(2)
-          end
-        end
+  def run
+    init_run_keys
+    forage_detail
+  end
+  def forage_detail
+    puts "forage"
+    ForagerRunKey.where(is_processed: 'n').find_each do |key|
+      begin
+        doc = Nokogiri::HTML(open(key.url).read)
+        article = doc.at("div.viewbox")
+        title = article.at("div.title h2").text
+        #author = article.at(".article_author").text
+        text = article.at(".content").text
+        post = ForagerPost.find_or_initialize_by(url: key.url)
+        post.content = text.strip
+        post.source = @source
+        post.title = title.strip
+        post.tag = key.tag
+        post.channel = '微语录'
+        post.save!
+
+        key.is_processed = 'y'
       rescue => ex
         puts ex.message
-        retry
+        key.is_processed = 'f'
       end
-    end until i > 1000000
+      key.save!
+    end
   end
+
 end
 
 if __FILE__ == $0
