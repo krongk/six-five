@@ -75,15 +75,17 @@ module ApplicationHelper
     return Admin::Page.find(rand(100) + 1) if ip.nil?
     if cookies[ip.to_s]
       ids = cookies[ip.to_s].split(',')
-      #See http://thinkingeek.com/2011/07/04/easily-select-random-records-rails/
-      page = Admin::Page.where(["id not in (?)", ids]).sample(1).first
-      cookies[ip.to_s] = cookies[ip.to_s] + ',' + page.id.to_s unless page.nil?
+      #See http://hashrocket.com/blog/posts/rails-quick-tips-random-records
+      id = Admin::Page.pluck(:id).shuffle[0]
+      while ids.include?(id) do
+        id = Admin::Page.pluck(:id).shuffle[0]
+      end
+      cookies[ip.to_s] = cookies[ip.to_s] + ',' + id.to_s
     else
-      page =  Admin::Page.all.sample(1).first
-      cookies[ip.to_s] = page.id.to_s unless page.nil?
+      id = Admin::Page.pluck(:id).shuffle[0]
+      cookies[ip.to_s] = id.to_s
     end
-    page ||= Admin::Page.first
-    page
+    return Admin::Page.find(id)
   end
 
   #前台获得下拉列表菜单
