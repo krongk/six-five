@@ -163,7 +163,8 @@ module ApplicationHelper
   def update_tag(channel_or_page)
     #remove all previows
     channel_or_page.tag_list.clear
-    #add new 
+    #add new
+    return if channel_or_page.keywords.blank?
     channel_or_page.keywords.split(SPECIAL_SYMBO_REG).each do |tag|
       next if SPECIAL_SYMBO_REG.match tag
       channel_or_page.tag_list.add(tag)
