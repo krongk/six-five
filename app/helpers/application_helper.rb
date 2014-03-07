@@ -72,6 +72,12 @@ module ApplicationHelper
   end
 
   def get_random_page(ip)
+    admin_page_count = Admin::Keystore.value_for('admin_page_count').to_i
+    admin_page_count = 10 if admin_page_count < 1
+    return Admin::Page.offset(rand(admin_page_count)).first
+  end
+
+  def get_random_page_bak(ip)
     return Admin::Page.find(rand(100) + 1) if ip.nil?
     if cookies[ip.to_s]
       ids = cookies[ip.to_s].split(',')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304020704) do
+ActiveRecord::Schema.define(version: 20140307073619) do
 
   create_table "admin_channels", force: true do |t|
     t.integer  "user_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140304020704) do
     t.string   "name"
     t.string   "email"
     t.string   "message"
+    t.string   "source_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +81,15 @@ ActiveRecord::Schema.define(version: 20140304020704) do
   end
 
   add_index "admin_keystores", ["key"], name: "index_admin_keystores_on_key", using: :btree
+
+  create_table "admin_page_contents", force: true do |t|
+    t.integer  "admin_page_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_page_contents", ["admin_page_id"], name: "index_admin_page_contents_on_admin_page_id", using: :btree
 
   create_table "admin_pages", force: true do |t|
     t.integer  "user_id"
@@ -135,7 +145,15 @@ ActiveRecord::Schema.define(version: 20140304020704) do
   add_index "forager_posts", ["author"], name: "idx__author", using: :btree
   add_index "forager_posts", ["is_migrated"], name: "idx__migrated", using: :btree
   add_index "forager_posts", ["is_processed"], name: "idx__processed", using: :btree
+  add_index "forager_posts", ["source"], name: "idx__source", using: :btree
   add_index "forager_posts", ["title"], name: "idx__title", using: :btree
+  add_index "forager_posts", ["url"], name: "idx__url", length: {"url"=>255}, using: :btree
+
+  create_table "forager_run_keys", force: true do |t|
+    t.string "is_processed", limit: 50,  default: "n"
+    t.string "url"
+    t.string "tag",          limit: 128
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

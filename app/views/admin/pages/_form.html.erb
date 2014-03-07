@@ -31,8 +31,8 @@
         <%= f.collection_check_boxes :properties, ApplicationHelper::PAGE_PROPERTIES, :first, :last %>
         <br>
         <%#= f.input :properties %>
-        <%#= f.input :content %>
-        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "600px"} } %>
+        <%= f.input :content, :as => :text, :input_html =>{ :value => @admin_page.page_content.content,  style: "height: 600px;" } %>
+        <%#= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'custom', height: "600px"} } %>
       </div>
     </div>
   </div>

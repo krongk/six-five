@@ -1,0 +1,15 @@
+---
+en:
+  active_record:
+    models:
+      admin:
+        page_content: Page content
+    attributes:
+      admin:
+        page_content:
+          admin_page: Admin page
+          content: Content
+    errors:
+      page_content: 
+  helpers:
+    page_content: 

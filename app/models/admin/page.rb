@@ -1,6 +1,28 @@
 class Admin::Page < ActiveRecord::Base
   belongs_to :user
   belongs_to :channel
+  has_one :page_content, :dependent => :destroy, :autosave => true
+
+  # attr_accessor :age   # make age writable and redable
+  # attr_writer :secret #make secret only writable
+  # attr_reader :employee_code # make it only readable
+  attr_accessor :content
+
+  def content= text
+    begin
+      if self.page_content.content.blank?
+        self.page_content.content = text.gsub(/(\r\n){2,}/, "<br>\n").gsub(/\r\n/, "<br>\n").gsub(/(<br>{2,})/, "<br>\n")
+      else
+        self.page_content.content = text
+      end
+    rescue
+      self.page_content.content = text
+    end
+  end
+
+  def content
+    self.page_content.content
+  end
 
   acts_as_taggable
 
@@ -9,7 +31,10 @@ class Admin::Page < ActiveRecord::Base
     message: "名称简写只能包括字母数字和横线" }
 
   #cache
-  after_save :expire_cache
+  after_save :expire_cache, :increase_page_count
+  def increase_page_count
+    Admin::Keystore.increment_value_for('admin_page_count')
+  end
   def expire_cache
     logger.info "page #{self.id} saved!"
     cache_paths = [] 
