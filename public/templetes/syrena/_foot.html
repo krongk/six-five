@@ -1,16 +1,32 @@
+      
 
 <!-- jQuery, theme required for theme -->
+
 <script src="/templetes/syrena/assets/jquery/jquery.js"></script>
+
 <script src="/templetes/syrena/assets/bootstrap/js/bootstrap.min.js"></script>
 
+
+
 <!-- theme dependencies -->
+
 <script src="/templetes/syrena/assets/app/js/dependencies.js"></script>
 
+
+
 <!-- theme app main.js -->
+
 <script src="/templetes/syrena/assets/app/js/main.js"></script>
+
 <script type="text/javascript">
+
 $(function () {
+
     //Let left aside hidden default.
     $('#toggle-content').click();
+    $("#author").popover({placement:'bottom', html: true, title: '作者认领', content: '这篇文章是你写的吗?，是则点<a href="#">这里</a>认领。'});
 })
+
 </script>
+
+    
