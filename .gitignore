@@ -45,6 +45,7 @@ Gemfile
 /public/assets/*
 /public/favicon.ico
 /public/system/*
+/public/templetes/*
 /spec/tmp/*
 /cache
 /capybara*

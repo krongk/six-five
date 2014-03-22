@@ -37,7 +37,7 @@ class Admin::TempletesController < Admin::ApplicationController
     end
 
     @file = File.join(@base_dir, params[:f])
-    File.open(@file, 'w'){|f| f.write(params[:content])}
+    File.open(@file, 'w'){|f| f.write(params[:content].strip.gsub(/\n+/, "\n"))}
     redirect_to "/admin/templetes/index", notice: "更新成功"
     expire_cache
   end
