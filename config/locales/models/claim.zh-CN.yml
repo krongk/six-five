@@ -1,0 +1,16 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      claim: 认领
+    attributes:
+      claim:
+        admin_page: 页面
+        email: 电子邮件
+        phone: 电话号码
+        message: 留言
+        is_processed: 处理状态
+    errors:
+      claim: 
+  helpers:
+    claim: 

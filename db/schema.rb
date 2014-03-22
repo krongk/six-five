@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307073619) do
+ActiveRecord::Schema.define(version: 20140322181851) do
 
   create_table "admin_channels", force: true do |t|
     t.integer  "user_id"
@@ -83,13 +83,13 @@ ActiveRecord::Schema.define(version: 20140307073619) do
   add_index "admin_keystores", ["key"], name: "index_admin_keystores_on_key", using: :btree
 
   create_table "admin_page_contents", force: true do |t|
-    t.integer  "admin_page_id"
-    t.text     "content"
+    t.integer  "page_id",    limit: 8,          null: false
+    t.text     "content",    limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "admin_page_contents", ["admin_page_id"], name: "index_admin_page_contents_on_admin_page_id", using: :btree
+  add_index "admin_page_contents", ["page_id"], name: "unq__page_id", unique: true, using: :btree
 
   create_table "admin_pages", force: true do |t|
     t.integer  "user_id"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20140307073619) do
     t.string   "keywords"
     t.string   "description"
     t.string   "image_path"
-    t.text     "content",     limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,6 +125,18 @@ ActiveRecord::Schema.define(version: 20140307073619) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "claims", force: true do |t|
+    t.integer  "admin_page_id"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "message"
+    t.string   "is_processed",  default: "n"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "claims", ["admin_page_id"], name: "index_claims_on_admin_page_id", using: :btree
 
   create_table "forager_posts", force: true do |t|
     t.string  "is_migrated",  limit: 50,         default: "n", null: false
@@ -153,6 +164,8 @@ ActiveRecord::Schema.define(version: 20140307073619) do
     t.string "is_processed", limit: 50,  default: "n"
     t.string "url"
     t.string "tag",          limit: 128
+    t.string "channel",      limit: 128
+    t.string "author",       limit: 128
   end
 
   create_table "roles", force: true do |t|
@@ -165,6 +178,17 @@ ActiveRecord::Schema.define(version: 20140307073619) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "run_keys", force: true do |t|
+    t.string "is_processed", limit: 50,  default: "n"
+    t.string "url"
+    t.string "tag",          limit: 128
+    t.string "channel",      limit: 128
+  end
+
+  add_index "run_keys", ["channel"], name: "idx__channel", using: :btree
+  add_index "run_keys", ["tag"], name: "idx__tag", using: :btree
+  add_index "run_keys", ["url"], name: "unq__url", unique: true, using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

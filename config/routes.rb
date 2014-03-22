@@ -1,5 +1,7 @@
 RainCms::Application.routes.draw do
   
+  resources :claims
+
   resources :comments
 
   #routes for admin ==============================

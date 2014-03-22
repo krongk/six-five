@@ -2,59 +2,63 @@
 <!-- content wrapper to define fullpage or container -->
 <!-- (recomended: dont change the id value) -->
 <section id="wrapper" class="container">
-    <!-- define side left theme -->
-    <%= render file: 'public/templetes/syrena/_left_side.html' %>
-    <!-- define content theme, use data-swipe="true" to enable gesture event -->
-    <!-- (recomended: dont change the id value) -->
-    <section id="content" class="content">
-        <!-- define your content header here -->
-        <%= render file: 'public/templetes/syrena/_header.html' %>
-        <!-- define content row -->
-        <div class="content-spliter">
-            <!-- define your awesome apps here -->
-            <!-- (recomended: dont change the id value) -->
-            <section id="content-main" class="content-main">
-                <!-- your app content -->
-                <div class="content-app">
-                    <!-- app body -->
-                    <div class="app-body">
-                        
-                        <!-- app content here -->
-                        <div class="center-block center-box">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="box article-content">
-                                        <h2 class="app-title"><%= @page.title %>    <small>  
-                                        <i class="icon ion-ionic"></i><a id="author"><%= @page.author %></a></small>
-                                        </h2>
-                                        <hr/>
-                                        <%= raw @page.content %>
-                                        <hr/>
-                                        <%= render file: 'public/templetes/syrena/_baidu_share.html' %>
-                                        
-                                        <ul class="list-inline">
-                                            <li data-toggle="tooltip" data-placement="bottom" title="" data-original-title="本文固定地址">
-                                                <div class="spinner spinner-sm spinner-double-bounce">
-                                                    <div class="double-bounce bg-success"></div>
-                                                    <div class="double-bounce bg-success"></div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <%= link_to 'www.65960.com' + get_url(@page), get_url(@page) %>
-                                            </li>
-                                  
-                                        </ul>
-                                    </div>
+<!-- define side left theme -->
+<%= render file: 'public/templetes/syrena/_left_side.html' %>
+<!-- define content theme, use data-swipe="true" to enable gesture event -->
+<!-- (recomended: dont change the id value) -->
+<section id="content" class="content">
+    <!-- define your content header here -->
+    <%= render file: 'public/templetes/syrena/_header.html' %>
+    <!-- define content row -->
+    <div class="content-spliter">
+        <!-- define your awesome apps here -->
+        <!-- (recomended: dont change the id value) -->
+        <section id="content-main" class="content-main">
+            <!-- your app content -->
+            <div class="content-app">
+                <!-- app body -->
+                <div class="app-body">
+                    
+                    <!-- app content here -->
+                    <div class="center-block center-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box article-content">
+                                    <h2 class="app-title"><%= @page.title %><small>  
+                                    <i class="icon ion-ionic"></i><a id="author" data-original-title="文章认领"><%= @page.author %></a></small>
+                                    </h2>
+                                    <hr/>
+                                    <%= raw @page.content %>
+                                    <hr/>
+                                    <%= render file: 'public/templetes/syrena/_baidu_share.html' %>
+                                    
+                                    <ul class="list-inline">
+                                        <li data-toggle="tooltip" data-placement="bottom" title="" data-original-title="本文固定地址">
+                                            <div class="spinner spinner-sm spinner-double-bounce">
+                                                <div class="double-bounce bg-success"></div>
+                                                <div class="double-bounce bg-success"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <%= link_to 'www.65960.com' + get_url(@page), get_url(@page) %>
+                                        </li>
+                              
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <!-- define your extra apps here -->
-            <!-- (recomended: dont change the id value) -->
-            <%= render file: 'public/templetes/syrena/_right_side.html' %>
-        </div><!-- /content spliter -->
-    </section><!-- /content -->
+            </div>
+        </section>
+        
+        <!-- define your extra apps here -->
+        <!-- (recomended: dont change the id value) -->
+        <%= render file: 'public/templetes/syrena/_right_side.html' %>
+    </div><!-- /content spliter -->
+</section><!-- /content -->
 </section><!-- /wrapper -->
+
+<div id="claim-form">
+  <%= render partial: 'claims/form' %>
+</div><!-- end claim form-->

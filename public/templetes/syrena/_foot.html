@@ -1,14 +1,14 @@
-<!-- jQuery, theme required for theme -->
-<script data-turbolinks-track="true"  src="/templetes/syrena/assets/jquery/jquery.js"></script>
-<script data-turbolinks-track="true"  src="/templetes/syrena/assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- theme dependencies -->
-<script data-turbolinks-track="true"  src="/templetes/syrena/assets/app/js/dependencies.js"></script>
-<!-- theme app main.js -->
-<script data-turbolinks-track="true"  src="/templetes/syrena/assets/app/js/main.js"></script>
-<script data-turbolinks-track="true"  type="text/javascript">
-$(function () {
+<script type="text/javascript">
+  $(document).ready(function() {
     //Let left aside hidden default.
     $('#toggle-content').click();
-    $("#author").popover({placement:'bottom', html: true, title: '作者认领', content: '这篇文章是你写的吗?，是则点<a href="#">这里</a>认领。'});
-})
+
+    $('#author').popover({
+        html: true,
+        placement: 'bottom',
+        content: function(){
+          return $('#claim-form').html();
+        }
+    });
+  });
 </script>

@@ -1,0 +1,14 @@
+<%= simple_form_for(@claim) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%#= f.association :admin_page %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
+    <%= f.input :message, input_html: {rows: 6} %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-default btn-primary' %>
+  </div>
+<% end %>

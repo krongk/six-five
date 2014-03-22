@@ -49,6 +49,9 @@ class WelcomeController < ApplicationController
     #comment
     #@comment = Comment.new
     
+    #claim
+    @claim = Claim.new
+    
     #统一访问路径，使URL呈唯一性
     if @page
       if request.path != "/#{@channel.short_title}-#{@page.id}"
