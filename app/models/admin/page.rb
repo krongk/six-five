@@ -19,7 +19,7 @@ class Admin::Page < ActiveRecord::Base
       self.page_content.content = text
     end
   end
-
+  
   def content
     self.page_content.content
   end
@@ -66,12 +66,7 @@ class Admin::Page < ActiveRecord::Base
   #channel =[ channel.short_title, ]
   #eg: Admin::Page.recent(12, :typo => 'product',  :rand => true)
   def self.recent(count = 10, options = {})
-    options = {typo: 'all'}.merge(options)
-    pages = options[:rand] ? Admin::Page.order(" rand() ") : Admin::Page.order("updated_at DESC")
-    pages = pages.select{|p| p.channel.typo == options[:typo]} unless options[:typo] == 'all'
-    pages = pages.select{|p| p.channel.short_title == options[:channel]}  unless options[:channel].nil?
-    pages = pages.select{|p| p.properties == options[:properties]} unless options[:properties].nil?
-    pages[0...count]
+    Admin::Page.last(count)
   end
   #搜索
   def self.search(search)

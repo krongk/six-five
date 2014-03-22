@@ -19,7 +19,7 @@ gem 'simple_form'
 gem 'acts-as-taggable-on'
 
 # For linux
-#gem 'therubyracer', :platform=>:ruby
+gem 'therubyracer', :platform=>:ruby
 #gem 'puma'
 
 #page caching

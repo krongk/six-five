@@ -1,4 +1,4 @@
-<% @page = Admin::Page.recent(1).first %>
+<% @page ||= Admin::Page.recent(1).first %>
 <!-- content wrapper to define fullpage or container -->
 <!-- (recomended: dont change the id value) -->
 <section id="wrapper" class="container">
@@ -57,13 +57,13 @@
                                                     <div class="panel-body">
                                                         <div class="panel-body-heading">
                                                             <div class="pb-object pb-object-circle">
-                                                                <img src="/templetes/syrena/assets/app/img/avatar1.png" alt="">
+                                                                <img src="/templetes/syrena/assets/app/img/avatar1.png" alt="六五微文学">
                                                             </div><!-- /pb-object -->
                                                             <h3 class="pb-title">
-                                                                <a href="<%= get_url(page) %>" target="_blank">
+                                                                <a href="<%= get_url(page) %>" >
                                                                     <%= page.title %>
                                                                 </a>
-                                                                <small> <%= get_short_content(page.content, 60) %></small>
+                                                                <small> <%= page.description %></small>
                                                                 
                                                             </h3><!-- /pb-title -->
                                                         </div><!-- /panel-body-heading -->

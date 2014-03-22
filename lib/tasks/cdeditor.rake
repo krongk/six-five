@@ -11,6 +11,11 @@ namespace :ckeditor do
       nondigest = file.sub fingerprint, '.'
       FileUtils.cp file, nondigest, verbose: true
     end
+    for file in Dir["public/assets/**/*"]
+      next unless file =~ fingerprint
+      nondigest = file.sub fingerprint, '.'
+      FileUtils.cp file, nondigest, verbose: true
+    end
   end
 end
 
