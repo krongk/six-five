@@ -86,8 +86,8 @@ class Forager
   end
 
   def run
-    init_run_keys
-    init_forager_run_keys
+    #init_run_keys
+    #init_forager_run_keys
     forage_detail
   end
   
@@ -163,6 +163,8 @@ class Forager
 
   def forage_detail
     puts "forage"
+    index = 0
+    error = 0
     ForagerRunKey.where(is_processed: 'n').find_each do |key|
       begin
         doc = Nokogiri::HTML(open(key.url).read)
@@ -170,22 +172,30 @@ class Forager
         post = ForagerPost.find_or_initialize_by(url: key.url)
         post.source = @source
         post.tag = key.tag
+        post.author = key.author
         post.channel = key.channel
 
         if main = doc.at(".read")
           title = main.at("h1")
           content = main.at(".readtext")
+        elsif main = doc.at("div#z_left")
+          title = main.at(".tit h1")
+          content = main.at("div#zoom")
         end
         
-        post.content = content.strip
-        post.title = title.strip
+        post.content = content.text.strip
+        post.title = title.text.strip
         post.save!
 
         key.is_processed = 'y'
       rescue => ex
-        puts ex.message
-        key.is_processed = 'f'
+        error += 1
+        exit if error > 1000
+        puts ex.message[0..50]
+        key.is_processed = ex.message[0..30]
       end
+      index += 1
+      puts index if index%500 == 0
       key.save!
     end
   end
@@ -195,3 +205,14 @@ end
 if __FILE__ == $0
   Forager.new.run
 end
+
+=begin
+  Test 
+
+require 'rubygems'
+require 'open-uri'
+require 'nokogiri'
+
+u = "http://prose.goodmood.cn/a/2013/0331/10_253302.html"
+doc = Nokogiri::HTML(open(key.url).read)
+=end
