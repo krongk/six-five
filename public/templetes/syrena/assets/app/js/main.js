@@ -11,8 +11,8 @@
 
 $(function(){
 
-	'use strict';
-	$.extend(verge); // enxtend verge (viewport reader, docs: https://github.com/ryanve/verge) to jquery
+	//'use strict';
+	//$.extend(verge); // enxtend verge (viewport reader, docs: https://github.com/ryanve/verge) to jquery
 
 
 	//$("#article_static_url").on('mouseup', function() { $(this).select(); });
@@ -154,7 +154,7 @@ $(function(){
 	})
 	// toggle content
 	$('#toggle-content').on('click', function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		
 		var content = $('#content');
 
