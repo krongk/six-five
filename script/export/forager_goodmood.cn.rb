@@ -181,6 +181,9 @@ class Forager
         elsif main = doc.at("div#z_left")
           title = main.at(".tit h1")
           content = main.at("div#zoom")
+        elsif main = doc.at(".left") #http://poetry.goodmood.cn/a/2014/0313/0_606039.html
+          title = main.at(".sgtitle")
+          content = main.at(".left_bd")
         end
         
         post.content = content.text.strip
@@ -214,5 +217,5 @@ require 'open-uri'
 require 'nokogiri'
 
 u = "http://prose.goodmood.cn/a/2013/0331/10_253302.html"
-doc = Nokogiri::HTML(open(key.url).read)
+doc = Nokogiri::HTML(open(u).read)
 =end
